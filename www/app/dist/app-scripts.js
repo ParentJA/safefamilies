@@ -84,14 +84,23 @@
   "use strict";
 
   function AuthorizationRouterConfig($stateProvider) {
-    $stateProvider.state("log_in", {
-      url: "/log_in",
-      templateUrl: "users/views/log_in/log_in.html",
-      data: {
-        loginRequired: false
-      },
-      controller: "LogInController"
-    });
+    $stateProvider
+      .state("log_in", {
+        url: "/log_in",
+        templateUrl: "users/views/log_in/log_in.html",
+        data: {
+          loginRequired: false
+        },
+        controller: "LogInController"
+      })
+      .state("sign_up", {
+        url: "/sign_up",
+        templateUrl: "users/views/sign_up/sign_up.html",
+        data: {
+          loginRequired: false
+        },
+        controller: "SignUpController"
+      });
   }
 
   angular.module("safefamilies")
@@ -226,5 +235,41 @@
     .controller("LogInController", ["$scope", "$state", "logInService", LogInController]);
 
 })(window, window.angular);
+(function (window, angular, undefined) {
+
+  "use strict";
+
+  function SignUpController($scope, $state, signUpService) {
+    $scope.email = null;
+    $scope.error = {};
+    $scope.form = "";
+    $scope.password = null;
+    $scope.passwordAgain = null;
+    $scope.username = null;
+
+    $scope.hasError = function hasError() {
+      return !_.isEmpty($scope.error);
+    };
+
+    $scope.onSubmit = function onSubmit() {
+      signUpService($scope.username, $scope.email, $scope.password).then(function () {
+        $state.go("app.dashboard");
+      }, function (response) {
+        $scope.error = response.data;
+        $scope.password = null;
+        $scope.passwordAgain = null;
+      });
+    };
+
+    $scope.passwordsMatch = function passwordsMatch() {
+      return (!_.isEmpty($scope.password) && $scope.password === $scope.passwordAgain);
+    };
+  }
+
+  angular.module("safefamilies")
+    .controller("SignUpController", ["$scope", "$state", "signUpService", SignUpController]);
+
+})(window, window.angular);
 angular.module("templates").run(["$templateCache", function($templateCache) {$templateCache.put("global/views/dashboard/dashboard.html","<div class=\"mbl\">\n  <img class=\"img-circle center-block\" ng-src=\"{{ models.user.photo }}\" width=\"80\">\n  <h4 class=\"text-center\">{{ models.user.fullName }}</h4>\n</div>");
-$templateCache.put("users/views/log_in/log_in.html","<h4 class=\"text-center mbl\">Log in</h4>\n<form name=\"form\" novalidate ng-submit=\"onSubmit()\">\n  <div class=\"alert alert-danger\" ng-if=\"hasError()\">\n    <strong>{{ error.status }}</strong> {{ error.message }}\n  </div>\n  <div class=\"form-group\">\n    <label for=\"username\">Username:</label>\n    <input id=\"username\" class=\"form-control\" type=\"text\" ng-model=\"username\" required>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"password\">Password:</label>\n    <input id=\"password\" class=\"form-control\" type=\"password\" ng-model=\"password\" required>\n  </div>\n  <button class=\"btn btn-primary btn-block\" type=\"submit\" ng-disabled=\"form.$invalid\">Log in\n  </button>\n</form>\n\n<!-- TODO: Don\'t have an account? Sign up! -->");}]);
+$templateCache.put("users/views/log_in/log_in.html","<div class=\"row\">\n  <div class=\"col-lg-offset-4 col-lg-4\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        <h4 class=\"panel-title\">Log in</h4>\n      </div>\n      <div class=\"panel-body\">\n        <form name=\"form\" novalidate ng-submit=\"onSubmit()\">\n          <div class=\"alert alert-danger\" ng-if=\"hasError()\">\n            <strong>{{ error.status }}</strong> {{ error.message }}\n          </div>\n          <div class=\"form-group\">\n            <label for=\"username\">Username:</label>\n            <input id=\"username\" class=\"form-control\" type=\"text\" ng-model=\"username\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"password\">Password:</label>\n            <input id=\"password\" class=\"form-control\" type=\"password\" ng-model=\"password\" required>\n          </div>\n          <button class=\"btn btn-primary btn-block\" type=\"submit\" ng-disabled=\"form.$invalid\">Log in\n          </button>\n        </form>\n      </div>\n    </div>\n    <p class=\"text-center\">Don\'t have an account? <a href ui-sref=\"sign_up\">Sign up!</a></p>\n  </div>\n</div>");
+$templateCache.put("users/views/sign_up/sign_up.html","<div class=\"row\">\n  <div class=\"col-lg-offset-4 col-lg-4\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        <h4 class=\"panel-title\">Sign up</h4>\n      </div>\n      <div class=\"panel-body\">\n        <form name=\"form\" novalidate ng-submit=\"onSubmit()\">\n          <div class=\"alert alert-danger\" ng-if=\"hasError()\">\n            <strong>{{ error.status }}</strong> {{ error.message }}\n          </div>\n          <div class=\"form-group\">\n            <label for=\"username\">Username:</label>\n            <input id=\"username\" class=\"form-control\" type=\"text\" ng-model=\"username\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"email\">Email:</label>\n            <input id=\"email\" class=\"form-control\" type=\"text\" ng-model=\"email\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"password\">Password:</label>\n            <input id=\"password\" class=\"form-control\" type=\"password\" ng-model=\"password\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"password-confirmation\">Password (again):</label>\n            <input id=\"password-confirmation\" class=\"form-control\" type=\"password\" ng-model=\"passwordAgain\" required>\n          </div>\n          <button class=\"btn btn-primary btn-block\" type=\"submit\" ng-disabled=\"form.$invalid || !passwordsMatch()\">Sign up\n          </button>\n        </form>\n      </div>\n    </div>\n    <p class=\"text-center\">Already have an account? <a href ui-sref=\"log_in\">Log in!</a></p>\n  </div>\n</div>");}]);
