@@ -1,0 +1,31 @@
+{
+  "name": "safefamilies",
+  "version": "0.1.0",
+  "authors": [
+    "Jason Parent <jason.a.parent@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.0",
+    "example-accounts": "git+https://github.com/ParentJA/example-accounts-angular",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.5.0",
+    "angular-ui-router": "~0.2.18",
+    "moment": "momentjs#~2.11.2",
+    "lodash": "~4.5.1",
+    "angular-bootstrap": "~1.1.2",
+    "bootswatch": "~3.3.6+1"
+  }
+}
