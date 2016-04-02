@@ -3,6 +3,7 @@
   "use strict";
 
   function AuthorizationRouterConfig($stateProvider) {
+    // Account-based config.
     $stateProvider
       .state("log_in", {
         url: "/log_in",
@@ -19,6 +20,51 @@
           loginRequired: false
         },
         controller: "SignUpController"
+      });
+
+    // Users-based config.
+    $stateProvider
+      .state("app.profile", {
+        url: "/profile",
+        template: "<div ui-view></div>",
+        data: {
+          loginRequired: true
+        },
+        abstract: true
+      })
+      .state("app.profile.detail", {
+        url: "/detail",
+        templateUrl: "users/views/profile_detail/profile_detail.html",
+        data: {
+          loginRequired: true
+        },
+        resolve: {
+          userProfile: function (UserProfileModel, loadUserProfile) {
+            if (!UserProfileModel.hasUserProfile()) {
+              return loadUserProfile();
+            }
+
+            return UserProfileModel;
+          }
+        },
+        controller: "ProfileDetailController"
+      })
+      .state("app.profile.edit", {
+        url: "/edit",
+        templateUrl: "users/views/profile_edit/profile_edit.html",
+        data: {
+          loginRequired: true
+        },
+        resolve: {
+          userProfile: function (UserProfileModel, loadUserProfile) {
+            if (!UserProfileModel.hasUserProfile()) {
+              return loadUserProfile();
+            }
+
+            return UserProfileModel;
+          }
+        },
+        controller: "ProfileEditController"
       });
   }
 

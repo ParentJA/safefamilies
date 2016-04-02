@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-lg-offset-4 col-lg-4">
+    <div class="text-center">
+      <a href ui-sref="app.profile.edit">
+        <img class="img-circle center-block" ng-src="{{ models.photo }}" width="80">
+      </a>
+      <div class="details-display">
+        <div ng-if="selectedDetail === 'name'">
+          <p>Hi, my name is</p>
+          <h4>{{ models.full_name }}</h4>
+        </div>
+        <div ng-if="selectedDetail === 'email'">
+          <p>My email address is</p>
+          <h4>{{ models.email }}</h4>
+        </div>
+        <div ng-if="selectedDetail === 'address'">
+          <p>My address is</p>
+          <h4>{{ models.full_address }}</h4>
+        </div>
+        <div ng-if="selectedDetail === 'phone'">
+          <p>My phone number is</p>
+          <h4>{{ models.phone_number }}</h4>
+        </div>
+      </div>
+      <ul class="details-list list-inline">
+        <li ng-mouseenter="setSelectedDetail('name')" ng-click="setSelectedDetail('name')">
+          <i class="fa fa-user"></i>
+        </li>
+        <li ng-mouseenter="setSelectedDetail('email')" ng-click="setSelectedDetail('email')">
+          <i class="fa fa-envelope"></i>
+        </li>
+        <li ng-mouseenter="setSelectedDetail('address')" ng-click="setSelectedDetail('address')">
+          <i class="fa fa-map-marker"></i>
+        </li>
+        <li ng-mouseenter="setSelectedDetail('phone')" ng-click="setSelectedDetail('phone')">
+          <i class="fa fa-phone"></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

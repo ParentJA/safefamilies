@@ -30,6 +30,12 @@
             }
 
             return UserProfileModel;
+          },
+          recipientNeeds: function (loadNeeds) {
+            return loadNeeds();
+          },
+          commitments: function (CommitmentResource) {
+            return CommitmentResource.list();
           }
         },
         controller: "DashboardController"

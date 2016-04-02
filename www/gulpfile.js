@@ -19,17 +19,18 @@ gulp.task("app-styles", function () {
   // Compile styles and write to dist.
   return gulp.src("./app/src/**/*.css")
     .pipe(concat("./app-styles.css"))
-    .pipe(gulp.dest("./app/dist/"));
+    .pipe(gulp.dest("./app/dist/styles/"));
 });
 
 gulp.task("vendor-styles", function () {
   // Compile styles and write to dist.
   return gulp.src([
       "./bower_components/bootswatch/lumen/bootstrap.css",
-      "./bower_components/angular-bootstrap/ui-bootstrap-csp.css"
+      "./bower_components/angular-bootstrap/ui-bootstrap-csp.css",
+      "./bower_components/font-awesome/css/font-awesome.css"
     ])
     .pipe(concat("./vendor-styles.css"))
-    .pipe(gulp.dest("./app/dist/"));
+    .pipe(gulp.dest("./app/dist/styles/"));
 });
 
 gulp.task("app-scripts", function () {
@@ -37,7 +38,7 @@ gulp.task("app-scripts", function () {
   return gulp.src("./app/src/**/*.js")
     .pipe(addStream.obj(prepareTemplates()))
     .pipe(concat("./app-scripts.js"))
-    .pipe(gulp.dest("./app/dist/"));
+    .pipe(gulp.dest("./app/dist/scripts/"));
 });
 
 gulp.task("vendor-scripts", function () {
@@ -55,7 +56,13 @@ gulp.task("vendor-scripts", function () {
       "./bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
     ])
     .pipe(concat("./vendor-scripts.js"))
-    .pipe(gulp.dest("./app/dist/"));
+    .pipe(gulp.dest("./app/dist/scripts/"));
 });
 
-gulp.task("default", ["index", "app-styles", "vendor-styles", "app-scripts", "vendor-scripts"]);
+gulp.task("vendor-fonts", function () {
+  // Copy fonts to dist.
+  return gulp.src(["./bower_components/font-awesome/fonts/fontawesome-webfont.*"])
+    .pipe(gulp.dest("./app/dist/fonts/"));
+});
+
+gulp.task("default", ["index", "app-styles", "vendor-styles", "app-scripts", "vendor-scripts", "vendor-fonts"]);

@@ -21,3 +21,19 @@ class UserProfileView(views.APIView):
     def get(self, request):
         user_profile = get_user_profile(request.user)
         return Response(status=HTTP_200_OK, data=UserProfileSerializer(user_profile).data)
+
+    def post(self, request):
+        # Update user data.
+        user = request.user
+        user.first_name = request.data.get('first_name', user.first_name)
+        user.last_name = request.data.get('last_name', user.last_name)
+        user.save()
+
+        # Update user profile data.
+        user_profile = get_user_profile(user)
+        serializer = UserProfileSerializer(user_profile, data=request.data, partial=True)
+
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+
+        return Response(status=HTTP_200_OK, data=serializer.data)

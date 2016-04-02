@@ -16,7 +16,7 @@
       logInService($scope.username, $scope.password).then(function () {
         $state.go("app.dashboard");
       }, function (response) {
-        $scope.error = response.data;
+        $scope.error = response;
         $scope.password = null;
       });
     };
