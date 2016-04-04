@@ -11,7 +11,7 @@
       </div>
       <ul class="list-group" ng-if="models.requestedNeeds.length > 0">
         <li class="list-group-item" ng-repeat="need in models.requestedNeeds">
-          {{ need._need.name }} <a class="pull-right" href ng-click="assignNeed(need)">Assign</a>
+          {{ need._need.name }} <a class="pull-right" href ng-click="openAssignNeed(need)">Assign</a>
         </li>
       </ul>
     </div>
@@ -27,7 +27,7 @@
       </div>
       <ul class="list-group" ng-if="models.pendingNeeds.length > 0">
         <li class="list-group-item" ng-repeat="need in models.pendingNeeds">
-          {{ need._need.name }} <a class="pull-right" href ng-click="returnNeed(need)" ng-if="need.hasCommitment">Return</a>
+          {{ need._need.name }} <a class="pull-right" href ng-click="openReturnNeed(need)" ng-if="need.hasCommitment">Return</a>
         </li>
       </ul>
     </div>
