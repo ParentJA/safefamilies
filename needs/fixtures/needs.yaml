@@ -1,0 +1,23 @@
+  - model: needs.need
+  pk: 1
+  fields: {name: baby formula, description: A can of baby formula.}
+- model: needs.recipient
+  pk: 1
+  fields: {address_1: 293 Taylor Street, address_2: '', city: Vernon, state: CT, zip_code: '06066',
+    first_name: Alyson, last_name: Baptiste, phone_number: 860-645-1736}
+- model: needs.recipientneed
+  pk: 2
+  fields: {recipient: 1, need: 1, quantity: 5, status: REQ, created: ! '2016-03-30
+      00:44:36.052726+00:00', updated: ! '2016-04-04 19:06:26.489724+00:00'}
+- model: needs.recipientneed
+  pk: 3
+  fields: {recipient: 1, need: 1, quantity: 3, status: REQ, created: ! '2016-04-01
+      00:03:48.755838+00:00', updated: ! '2016-04-04 18:37:53.660858+00:00'}
+- model: needs.recipientneed
+  pk: 4
+  fields: {recipient: 1, need: 1, quantity: 6, status: REQ, created: ! '2016-04-01
+      00:04:12.572488+00:00', updated: ! '2016-04-04 18:37:54.799281+00:00'}
+- model: needs.recipientneed
+  pk: 5
+  fields: {recipient: 1, need: 1, quantity: 1, status: REQ, created: ! '2016-04-01
+      00:05:10.287335+00:00', updated: ! '2016-04-04 18:37:56.035729+00:00'}

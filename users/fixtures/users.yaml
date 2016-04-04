@@ -1,0 +1,12 @@
+- model: users.userprofile
+  pk: 1
+  fields: {address_1: 310 P Street NW, address_2: '', city: Washington, state: DC,
+    zip_code: '20001', photo: photos/no-image.jpg, phone_number: 860-977-7458}
+- model: users.userprofile
+  pk: 2
+  fields: {address_1: null, address_2: null, city: null, state: null, zip_code: null,
+    photo: photos/no-image.jpg, phone_number: null}
+- model: users.userprofile
+  pk: 10
+  fields: {address_1: null, address_2: null, city: null, state: null, zip_code: null,
+    photo: photos/no-image.jpg, phone_number: null}

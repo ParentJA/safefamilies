@@ -30,6 +30,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'accounts',
+    'lettuce.django',
     'localflavor',
     'rest_framework',
 ]

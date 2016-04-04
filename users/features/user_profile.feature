@@ -9,8 +9,8 @@ Feature: Users have profiles
 
     And I empty my "users.UserProfile" table
     And I add the following rows for "users.UserProfile":
-      | id | user_id |
-      | 1  | 1       |
+      | user_id |
+      | 1       |
 
   Scenario: Getting a user profile
 
