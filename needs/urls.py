@@ -12,11 +12,11 @@ urlpatterns = [
         'post': 'create'
     })),
     url(r'^commitment/(?P<pk>\d+)/$', CommitmentView.as_view({
-        'get': 'retrieve',
-        'put': 'update',
         'delete': 'destroy'
     })),
     url(r'^need/$', NeedView.as_view()),
     url(r'^recipient/$', RecipientView.as_view()),
-    url(r'^recipient_need/$', RecipientNeedView.as_view()),
+    url(r'^recipient_need/$', RecipientNeedView.as_view({
+        'get': 'list'
+    })),
 ]

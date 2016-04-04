@@ -2,9 +2,10 @@
 
   "use strict";
 
-  function loadNeeds($http, $q, BASE_URL, RecipientNeed) {
-    return function () {
+  function RecipientNeedResource($http, $q, BASE_URL, RecipientNeed) {
+    this.list = function list() {
       var deferred = $q.defer();
+
       $http.get(BASE_URL + "needs/recipient_need/").then(function (response) {
         RecipientNeed.updateList(response.data);
         deferred.resolve(RecipientNeed);
@@ -12,11 +13,12 @@
         console.error("Failed to load recipient needs.");
         deferred.reject(response.data);
       });
+
       return deferred.promise;
     };
   }
 
   angular.module("safefamilies")
-    .service("loadNeeds", ["$http", "$q", "BASE_URL", "RecipientNeed", loadNeeds]);
+    .service("RecipientNeedResource", ["$http", "$q", "BASE_URL", "RecipientNeed", RecipientNeedResource]);
 
 })(window, window.angular);

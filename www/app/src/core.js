@@ -31,8 +31,8 @@
 
             return UserProfileModel;
           },
-          recipientNeeds: function (loadNeeds) {
-            return loadNeeds();
+          recipientNeeds: function (RecipientNeedResource) {
+            return RecipientNeedResource.list();
           },
           commitments: function (CommitmentResource) {
             return CommitmentResource.list();

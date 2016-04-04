@@ -3,20 +3,9 @@
   "use strict";
 
   function CommitmentResource($http, $q, BASE_URL, Commitment, RecipientNeed) {
-    this.retrieve = function retrieve(id) {
-      var deferred = $q.defer();
-      $http.get(BASE_URL + "needs/commitment/" + id + "/").then(function (response) {
-        Commitment.updateDict(response.data);
-        deferred.resolve(Commitment);
-      }, function (response) {
-        console.error("Failed to get commitment with ID " + id + ".");
-        deferred.reject(response);
-      });
-      return deferred.promise;
-    };
-
     this.list = function list() {
       var deferred = $q.defer();
+
       $http.get(BASE_URL + "needs/commitment/").then(function (response) {
         Commitment.updateList(response.data);
         deferred.resolve(Commitment);
@@ -24,11 +13,13 @@
         console.error("Failed to get commitments.");
         deferred.reject(response);
       });
+
       return deferred.promise;
     };
 
     this.create = function create(commitment) {
       var deferred = $q.defer();
+
       $http.post(BASE_URL + "needs/commitment/", commitment).then(function (response) {
         Commitment.updateDict(response.data);
         RecipientNeed.updateDict(response.data);
@@ -37,24 +28,13 @@
         console.error("Failed to create commitment.");
         deferred.reject(response);
       });
-      return deferred.promise;
-    };
 
-    this.update = function update(id, commitment) {
-      var deferred = $q.defer();
-      $http.put(BASE_URL + "needs/commitment/" + id + "/", commitment).then(function (response) {
-        Commitment.updateDict(response.data);
-        RecipientNeed.updateDict(response.data);
-        deferred.resolve(Commitment);
-      }, function (response) {
-        console.error("Failed to update commitment with ID " + id + ".");
-        deferred.reject(response);
-      });
       return deferred.promise;
     };
 
     this.destroy = function destroy(id) {
       var deferred = $q.defer();
+
       $http.delete(BASE_URL + "needs/commitment/" + id + "/").then(function (response) {
         Commitment.removeDict(id);
         RecipientNeed.updateDict(response.data);
@@ -63,6 +43,7 @@
         console.error("Failed to delete commitment with ID " + id + ".");
         deferred.reject(response);
       });
+
       return deferred.promise;
     };
   }

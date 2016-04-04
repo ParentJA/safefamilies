@@ -18,19 +18,22 @@
     };
 
     this.updateDict = function updateDict(data) {
-      commitments[data.commitment.id] = data.commitment;
+      if (!_.isUndefined(data.commitment)) {
+        commitments[data.commitment.id] = data.commitment;
+      }
     };
 
     this.updateList = function updateList(data) {
-      commitments = _.merge(commitments, _.keyBy(data.commitment, "id"));
+      if (!_.isUndefined(data.commitment)) {
+        commitments = _.merge(commitments, _.keyBy(data.commitment, "id"));
+      }
     };
   }
 
   angular.module("safefamilies")
     .constant("CommitmentStatus", {
       ASSIGNED: "A",
-      FINISHED: "F",
-      RETURNED: "R"
+      FINISHED: "F"
     })
     .service("Commitment", [Commitment]);
 
