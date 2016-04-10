@@ -9,6 +9,18 @@ body {
   font-weight: 400;
 }
 
+.landing {
+  color: white;
+  font-size: 72px;
+}
+
+.landing-background {
+  background: url('/static/landing.jpg') no-repeat center center fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
 .middle-center {
   top: 0;
   right: 0;

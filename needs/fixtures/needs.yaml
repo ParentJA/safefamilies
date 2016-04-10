@@ -1,23 +1,88 @@
-  - model: needs.need
+---
+- model: needs.need
   pk: 1
-  fields: {name: baby formula, description: A can of baby formula.}
+  fields:
+    name: Pampers Swaddlers Diapers
+    description: Wrap your baby in Pampers Swaddlers diapers, our most trusted comfort and protection and the number one Choice of Hospitals. Our Blankie Soft diaper with a unique Absorb Away Liner pulls wetness and mess away from baby's skin to help keep your baby comfortable. It also has a color-changing wetness indicator that tells you when your baby might need a change. Finally, we make sure your baby's delicate belly is protected with the contoured umbilical notch.
+
+- model: needs.need
+  pk: 2
+  fields:
+    name: GERBER 1ST FOODS Peaches
+    description: Start your baby’s lifelong love of fruits and veggies with these single fruit and vegetable baby foods.
+
 - model: needs.recipient
   pk: 1
-  fields: {address_1: 293 Taylor Street, address_2: '', city: Vernon, state: CT, zip_code: '06066',
-    first_name: Alyson, last_name: Baptiste, phone_number: 860-645-1736}
+  fields:
+    address_1: 3818 Auerbach Ave
+    address_2: ''
+    city: Washington
+    state: DC
+    zip_code: 20001
+    first_name: Kristen
+    last_name: Chapman
+    phone_number: 863-388-3952
+
+- model: needs.recipient
+  pk: 2
+  fields:
+    address_1: 1946 Woodlane Dr
+    address_2: ''
+    city: Washington
+    state: DC
+    zip_code: 20001
+    first_name: Alicia
+    last_name: Franklin
+    phone_number: 162-581-1491
+
+- model: needs.recipient
+  pk: 3
+  fields:
+    address_1: 5658 Poplar Dr
+    address_2: ''
+    city: Washington
+    state: DC
+    zip_code: 20001
+    first_name: Lonnie
+    last_name: Washington
+    phone_number: 566-178-9983
+
+- model: needs.recipientneed
+  pk: 1
+  fields:
+    recipient: 1
+    need: 1
+    quantity: 100
+    status: REQ
+    created: '2016-03-30 00:44:36.052726+00:00'
+    updated: '2016-04-04 19:06:26.489724+00:00'
+
 - model: needs.recipientneed
   pk: 2
-  fields: {recipient: 1, need: 1, quantity: 5, status: REQ, created: ! '2016-03-30
-      00:44:36.052726+00:00', updated: ! '2016-04-04 19:06:26.489724+00:00'}
+  fields:
+    recipient: 1
+    need: 2
+    quantity: 10
+    status: REQ
+    created: '2016-03-30 00:44:36.052726+00:00'
+    updated: '2016-04-04 19:06:26.489724+00:00'
+
 - model: needs.recipientneed
   pk: 3
-  fields: {recipient: 1, need: 1, quantity: 3, status: REQ, created: ! '2016-04-01
-      00:03:48.755838+00:00', updated: ! '2016-04-04 18:37:53.660858+00:00'}
+  fields:
+    recipient: 3
+    need: 1
+    quantity: 50
+    status: REQ
+    created: '2016-03-30 00:44:36.052726+00:00'
+    updated: '2016-04-04 19:06:26.489724+00:00'
+
 - model: needs.recipientneed
   pk: 4
-  fields: {recipient: 1, need: 1, quantity: 6, status: REQ, created: ! '2016-04-01
-      00:04:12.572488+00:00', updated: ! '2016-04-04 18:37:54.799281+00:00'}
-- model: needs.recipientneed
-  pk: 5
-  fields: {recipient: 1, need: 1, quantity: 1, status: REQ, created: ! '2016-04-01
-      00:05:10.287335+00:00', updated: ! '2016-04-04 18:37:56.035729+00:00'}
+  fields:
+    recipient: 1
+    need: 2
+    quantity: 10
+    status: REQ
+    created: '2016-03-30 00:44:36.052726+00:00'
+    updated: '2016-04-04 19:06:26.489724+00:00'

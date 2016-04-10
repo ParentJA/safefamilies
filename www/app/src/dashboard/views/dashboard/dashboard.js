@@ -7,7 +7,6 @@
     $scope.models = {
       commitments: commitments.getCommitments(),
       pendingNeeds: recipientNeedService.getPendingNeeds(),
-      receivedNeeds: recipientNeedService.getReceivedNeeds(),
       requestedNeeds: recipientNeedService.getRequestedNeeds(),
       user: {
         photo: userProfile.getPhoto(),
@@ -17,7 +16,6 @@
 
     function updateNeeds() {
       $scope.models.pendingNeeds = recipientNeedService.getPendingNeeds();
-      $scope.models.receivedNeeds = recipientNeedService.getReceivedNeeds();
       $scope.models.requestedNeeds = recipientNeedService.getRequestedNeeds();
     }
 
@@ -35,7 +33,7 @@
     $scope.openAssignNeed = function openAssignNeed(need) {
       var modalInstance = $uibModal.open({
         animation: true,
-        templateUrl: "global/views/assign_need_modal/assign_need_modal.html",
+        templateUrl: "dashboard/views/assign_need_modal/assign_need_modal.html",
         controller: "AssignNeedModalController",
         resolve: {
           need: function () {
@@ -50,7 +48,7 @@
     $scope.openReturnNeed = function openReturnNeed(need) {
       var modalInstance = $uibModal.open({
         animation: true,
-        templateUrl: "global/views/return_need_modal/return_need_modal.html",
+        templateUrl: "dashboard/views/return_need_modal/return_need_modal.html",
         controller: "ReturnNeedModalController",
         resolve: {
           need: function () {

@@ -2,7 +2,9 @@
 
   "use strict";
 
-  function ReturnNeedModalController($scope, $uibModalInstance, need) {
+  function AssignNeedModalController($scope, $uibModalInstance, need) {
+    $scope.need = need;
+
     $scope.ok = function ok() {
       $uibModalInstance.close(need);
     };
@@ -13,6 +15,6 @@
   }
 
   angular.module("safefamilies")
-    .controller("ReturnNeedModalController", ["$scope", "$uibModalInstance", "need", ReturnNeedModalController]);
+    .controller("AssignNeedModalController", ["$scope", "$uibModalInstance", "need", AssignNeedModalController]);
 
 })(window, window.angular);

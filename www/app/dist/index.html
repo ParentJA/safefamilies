@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{% static 'styles/vendor-styles.css' %}">
   <link rel="stylesheet" href="{% static 'styles/app-styles.css' %}">
 </head>
-<body ng-controller="MainController">
+<body ng-controller="MainController" ng-class="{'landing-background': $state.is('landing')}">
 {% verbatim %}
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
@@ -21,10 +21,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand logo" href="/">safefamilies</a>
+      <a class="navbar-brand logo" href="/">safe families</a>
     </div>
     <div id="navbar-content" class="collapse navbar-collapse" uib-collapse="!navigationService.isNavigationOpen()">
-      <ul class="nav navbar-nav navbar-right" ng-show="hasUser()">
+      <ul class="nav navbar-nav navbar-right" ng-if="hasUser()">
         <li ng-class="{active: $state.is('app.dashboard')}">
           <a ui-sref="app.dashboard">Dashboard</a>
         </li>

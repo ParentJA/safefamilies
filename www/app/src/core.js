@@ -17,32 +17,17 @@
         },
         abstract: true
       })
-      .state("app.dashboard", {
-        url: "/dashboard",
-        templateUrl: "global/views/dashboard/dashboard.html",
+      .state("landing", {
+        url: "/",
+        templateUrl: "global/views/landing/landing.html",
         data: {
-          loginRequired: true
+          loginRequired: false
         },
-        resolve: {
-          userProfile: function (UserProfileModel, loadUserProfile) {
-            if (!UserProfileModel.hasUserProfile()) {
-              return loadUserProfile();
-            }
-
-            return UserProfileModel;
-          },
-          recipientNeeds: function (RecipientNeedResource) {
-            return RecipientNeedResource.list();
-          },
-          commitments: function (CommitmentResource) {
-            return CommitmentResource.list();
-          }
-        },
-        controller: "DashboardController"
+        controller: "LandingController"
       });
 
     //Default state...
-    $urlRouterProvider.otherwise("/app/dashboard");
+    $urlRouterProvider.otherwise("/");
   }
 
   function CoreRunner($rootScope, $state, AccountModel, navigationService) {
