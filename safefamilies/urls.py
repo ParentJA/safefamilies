@@ -11,6 +11,7 @@ MEDIA_ROOT = getattr(settings, 'MEDIA_ROOT')
 MEDIA_URL = getattr(settings, 'MEDIA_URL')
 
 urlpatterns = [
+    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api/v1/accounts/', include('accounts.urls')),
     url(r'^api/v1/users/', include('users.urls')),

@@ -1,4 +1,5 @@
 Django==1.9.4
+django-grappelli==2.8.1
 django-localflavor==1.2
 djangorestframework==3.3.2
 example-accounts-django==0.1.2
@@ -21,5 +22,3 @@ sure==1.2.24
 testtools==2.0.0
 traceback2==1.4.0
 unittest2==1.1.0
-
-git+https://github.com/ParentJA/example-accounts-django#egg=example-accounts-django
