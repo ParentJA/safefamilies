@@ -86,7 +86,10 @@ class RecipientNeedView(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
 
     def list(self, request):
-        recipient_needs = RecipientNeed.objects.select_related('need', 'recipient')
+        commitments = get_commitments(request.user)
+        recipient_needs = RecipientNeed.objects.select_related(
+            'need', 'recipient').filter(status=RecipientNeed.REQUESTED)
+        recipient_needs = list(recipient_needs) + [commitment.recipient_need for commitment in commitments]
         recipients = [recipient_need.recipient for recipient_need in recipient_needs]
         needs = [recipient_need.need for recipient_need in recipient_needs]
 

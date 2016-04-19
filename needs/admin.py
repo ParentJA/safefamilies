@@ -8,12 +8,13 @@ from .models import Commitment, Need, Recipient, RecipientNeed
 @admin.register(Commitment)
 class CommitmentAdmin(admin.ModelAdmin):
     fields = ('user', 'recipient_need', 'status', 'created', 'updated')
+    readonly_fields = ('created', 'updated')
     list_display = ('user', 'recipient_need', 'status', 'created', 'updated')
-    raw_id_fields = ('user', 'recipient_need')
-    list_select_related = ('user', 'recipient_need')
-    autocomplete_lookup_fields = {
-        'fk': ('user', 'recipient_need')
-    }
+    # raw_id_fields = ('user', 'recipient_need')
+    # list_select_related = ('user', 'recipient_need')
+    # autocomplete_lookup_fields = {
+    #     'fk': ('user', 'recipient_need')
+    # }
 
 
 @admin.register(Need)
@@ -31,9 +32,10 @@ class RecipientAdmin(admin.ModelAdmin):
 @admin.register(RecipientNeed)
 class RecipientNeedAdmin(admin.ModelAdmin):
     fields = ('recipient', 'need', 'quantity', 'status', 'created', 'updated')
+    readonly_fields = ('created', 'updated')
     list_display = ('recipient', 'need', 'quantity', 'status', 'created', 'updated')
-    raw_id_fields = ('recipient', 'need')
-    list_select_related = ('recipient', 'need')
-    autocomplete_lookup_fields = {
-        'fk': ('recipient', 'need')
-    }
+    # raw_id_fields = ('recipient', 'need')
+    # list_select_related = ('recipient', 'need')
+    # autocomplete_lookup_fields = {
+    #     'fk': ('recipient', 'need')
+    # }

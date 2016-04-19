@@ -51,7 +51,11 @@ class RecipientNeed(models.Model):
     quantity = models.IntegerField()
     status = models.CharField(max_length=3, choices=RECIPIENT_NEED_STATUSES, default=REQUESTED)
     created = models.DateTimeField(auto_now_add=True, editable=False)
-    updated = models.DateTimeField(auto_now=True)
+    updated = models.DateTimeField(auto_now=True)\
+
+    @staticmethod
+    def autocomplete_search_fields():
+        return ['recipient__first_name__icontains', 'recipient__last_name__icontains']
 
     def __unicode__(self):
         return '{recipient} {status} {quantity} {need}'.format(
