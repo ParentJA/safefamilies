@@ -21,6 +21,7 @@ class Recipient(Address):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     phone_number = PhoneNumberField(blank=True, null=True)
+    email = models.EmailField(null=True, blank=True)
     needs = models.ManyToManyField(
         'needs.Need',
         through='needs.RecipientNeed',

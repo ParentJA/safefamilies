@@ -25,8 +25,8 @@ class Need(admin.ModelAdmin):
 
 @admin.register(Recipient)
 class RecipientAdmin(admin.ModelAdmin):
-    fields = ('first_name', 'last_name', 'phone_number', 'address_1', 'address_2', 'city', 'state', 'zip_code')
-    list_display = ('first_name', 'last_name', 'phone_number', 'address_1', 'address_2', 'city', 'state', 'zip_code')
+    fields = ('first_name', 'last_name', 'phone_number', 'email', 'address_1', 'address_2', 'city', 'state', 'zip_code')
+    list_display = ('first_name', 'last_name', 'phone_number', 'email', 'address_1', 'address_2', 'city', 'state', 'zip_code')
 
 
 @admin.register(RecipientNeed)

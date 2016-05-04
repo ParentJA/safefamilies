@@ -21,7 +21,7 @@
         <tr ng-repeat="need in models.requestedNeeds">
           <td>{{ need.quantity }}</td>
           <td>{{ need._need.name }}</td>
-          <td class="text-right"><a href ng-click="openAssignNeed(need)">Assign</a></td>
+          <td class="text-right"><a href ng-click="openAssignNeed(need)">Accept</a></td>
         </tr>
         </tbody>
       </table>
@@ -30,7 +30,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          Pending Needs <span class="badge pull-right">{{ models.pendingNeeds.length }}</span>
+          Your Pending Needs <span class="badge pull-right">{{ models.pendingNeeds.length }}</span>
         </h4>
       </div>
       <div class="panel-body text-center" ng-if="models.pendingNeeds.length === 0">
