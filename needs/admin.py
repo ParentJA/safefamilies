@@ -31,9 +31,9 @@ class RecipientAdmin(admin.ModelAdmin):
 
 @admin.register(RecipientNeed)
 class RecipientNeedAdmin(admin.ModelAdmin):
-    fields = ('recipient', 'need', 'quantity', 'status', 'created', 'updated')
+    fields = ('recipient', 'need', 'quantity', 'due_date', 'status', 'created', 'updated')
     readonly_fields = ('created', 'updated')
-    list_display = ('recipient', 'need', 'quantity', 'status', 'created', 'updated')
+    list_display = ('recipient', 'need', 'quantity', 'due_date', 'status', 'created', 'updated')
     # raw_id_fields = ('recipient', 'need')
     # list_select_related = ('recipient', 'need')
     # autocomplete_lookup_fields = {

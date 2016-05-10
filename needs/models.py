@@ -50,6 +50,7 @@ class RecipientNeed(models.Model):
     recipient = models.ForeignKey('needs.Recipient')
     need = models.ForeignKey('needs.Need')
     quantity = models.IntegerField()
+    due_date = models.DateTimeField(null = True, blank = True)
     status = models.CharField(max_length=3, choices=RECIPIENT_NEED_STATUSES, default=REQUESTED)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     updated = models.DateTimeField(auto_now=True)\

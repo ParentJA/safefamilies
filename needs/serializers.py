@@ -39,4 +39,4 @@ class RecipientSerializer(serializers.ModelSerializer):
 class RecipientNeedSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecipientNeed
-        fields = ('id', 'recipient', 'need', 'quantity', 'status')
+        fields = ('id', 'recipient', 'need', 'quantity', 'due_date', 'status')

@@ -317,6 +317,80 @@
 
   "use strict";
 
+  function UserProfileModel() {
+    var userProfile = {};
+
+    this.getFirstName = function getFirstName() {
+      return userProfile.first_name;
+    };
+
+    this.getLastName = function getLastName() {
+      return userProfile.last_name;
+    };
+
+    this.getFullName = function getFullName() {
+      return userProfile.first_name + " " + userProfile.last_name;
+    };
+
+    this.getEmail = function getEmail() {
+      return userProfile.email;
+    };
+
+    this.getPhoto = function getPhoto() {
+      return userProfile.photo;
+    };
+
+    this.getAddress1 = function getAddress1() {
+      return userProfile.address_1;
+    };
+
+    this.getAddress2 = function getAddress2() {
+      return userProfile.address_2;
+    };
+
+    this.getCity = function getCity() {
+      return userProfile.city;
+    };
+
+    this.getState = function getState() {
+      return userProfile.state;
+    };
+
+    this.getZipCode = function getZipCode() {
+      return userProfile.zip_code;
+    };
+
+    this.getFullAddress = function getFullAddress() {
+      var address = userProfile.address_1;
+
+      if (userProfile.address_2) {
+        address = address + ", " + userProfile.address_2;
+      }
+
+      return address + ", " + userProfile.city + ", " + userProfile.state + " " + userProfile.zip_code;
+    };
+
+    this.getPhoneNumber = function getPhoneNumber() {
+      return userProfile.phone_number;
+    };
+
+    this.hasUserProfile = function hasUserProfile() {
+      return !_.isEmpty(userProfile);
+    };
+
+    this.update = function update(data) {
+      userProfile = data;
+    };
+  }
+
+  angular.module("safefamilies")
+    .service("UserProfileModel", [UserProfileModel]);
+
+})(window, window.angular);
+(function (window, angular, undefined) {
+
+  "use strict";
+
   function CommitmentResource($http, $q, BASE_URL, Commitment, RecipientNeed) {
     this.list = function list() {
       var deferred = $q.defer();
@@ -430,80 +504,6 @@
     .service("recipientNeedService", [
       "Commitment", "CommitmentStatus", "RecipientNeed", "RecipientNeedStatus", recipientNeedService
     ]);
-
-})(window, window.angular);
-(function (window, angular, undefined) {
-
-  "use strict";
-
-  function UserProfileModel() {
-    var userProfile = {};
-
-    this.getFirstName = function getFirstName() {
-      return userProfile.first_name;
-    };
-
-    this.getLastName = function getLastName() {
-      return userProfile.last_name;
-    };
-
-    this.getFullName = function getFullName() {
-      return userProfile.first_name + " " + userProfile.last_name;
-    };
-
-    this.getEmail = function getEmail() {
-      return userProfile.email;
-    };
-
-    this.getPhoto = function getPhoto() {
-      return userProfile.photo;
-    };
-
-    this.getAddress1 = function getAddress1() {
-      return userProfile.address_1;
-    };
-
-    this.getAddress2 = function getAddress2() {
-      return userProfile.address_2;
-    };
-
-    this.getCity = function getCity() {
-      return userProfile.city;
-    };
-
-    this.getState = function getState() {
-      return userProfile.state;
-    };
-
-    this.getZipCode = function getZipCode() {
-      return userProfile.zip_code;
-    };
-
-    this.getFullAddress = function getFullAddress() {
-      var address = userProfile.address_1;
-
-      if (userProfile.address_2) {
-        address = address + ", " + userProfile.address_2;
-      }
-
-      return address + ", " + userProfile.city + ", " + userProfile.state + " " + userProfile.zip_code;
-    };
-
-    this.getPhoneNumber = function getPhoneNumber() {
-      return userProfile.phone_number;
-    };
-
-    this.hasUserProfile = function hasUserProfile() {
-      return !_.isEmpty(userProfile);
-    };
-
-    this.update = function update(data) {
-      userProfile = data;
-    };
-  }
-
-  angular.module("safefamilies")
-    .service("UserProfileModel", [UserProfileModel]);
 
 })(window, window.angular);
 (function (window, angular, undefined) {
@@ -801,11 +801,11 @@
     .controller("SignUpController", ["$scope", "$state", "signUpService", SignUpController]);
 
 })(window, window.angular);
-angular.module("templates").run(["$templateCache", function($templateCache) {$templateCache.put("dashboard/views/assign_need_modal/assign_need_modal.html","<div class=\"modal-header\">\n  <h4 class=\"modal-title\">Assign Need</h4>\n</div>\n<div class=\"modal-body\">\n  <p class=\"lead\">Will you donate {{ need.quantity }} {{ need._need.name }}?</p>\n  <p><strong>Description</strong></p>\n  <p>{{ need._need.description }}</p>\n</div>\n<div class=\"modal-footer\">\n  <button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">No</button>\n  <button class=\"btn btn-primary\" type=\"submit\" ng-click=\"ok()\">Yes</button>\n</div>");
-$templateCache.put("dashboard/views/dashboard/dashboard.html","<div class=\"row\">\n  <div class=\"col-lg-12\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        <h4 class=\"panel-title\">\n          Requested Needs <span class=\"badge pull-right\">{{ models.requestedNeeds.length }}</span>\n        </h4>\n      </div>\n      <div class=\"panel-body text-center\" ng-if=\"models.requestedNeeds.length === 0\">\n        No one has requested anything...\n      </div>\n      <table class=\"table table-responsive\" ng-if=\"models.requestedNeeds.length > 0\">\n        <thead>\n        <tr>\n          <th>Quantity</th>\n          <th>Name</th>\n          <th class=\"text-right\">Action</th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr ng-repeat=\"need in models.requestedNeeds\">\n          <td>{{ need.quantity }}</td>\n          <td>{{ need._need.name }}</td>\n          <td class=\"text-right\"><a href ng-click=\"openAssignNeed(need)\">Assign</a></td>\n        </tr>\n        </tbody>\n      </table>\n    </div>\n\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        <h4 class=\"panel-title\">\n          Pending Needs <span class=\"badge pull-right\">{{ models.pendingNeeds.length }}</span>\n        </h4>\n      </div>\n      <div class=\"panel-body text-center\" ng-if=\"models.pendingNeeds.length === 0\">\n        You haven\'t committed to any requests...\n      </div>\n      <table class=\"table table-responsive\" ng-if=\"models.pendingNeeds.length > 0\">\n        <thead>\n        <tr>\n          <th>Quantity</th>\n          <th>Name</th>\n          <th class=\"text-right\">Action</th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr ng-repeat=\"need in models.pendingNeeds\">\n          <td>{{ need.quantity }}</td>\n          <td>{{ need._need.name }}</td>\n          <td class=\"text-right\"><a href ng-click=\"openReturnNeed(need)\" ng-if=\"need.hasCommitment\">Return</a></td>\n        </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n</div>");
-$templateCache.put("dashboard/views/return_need_modal/return_need_modal.html","<div class=\"modal-header\">\n  <h4 class=\"modal-title\">Return Need</h4>\n</div>\n<div class=\"modal-body\">\n  <p class=\"lead\">Do you want us to assign {{ need.quantity }} {{ need._need.name }} to someone else?</p>\n  <p><strong>Description</strong></p>\n  <p>{{ need._need.description }}</p>\n</div>\n<div class=\"modal-footer\">\n  <button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">No</button>\n  <button class=\"btn btn-primary\" type=\"submit\" ng-click=\"ok()\">Yes</button>\n</div>");
-$templateCache.put("global/views/landing/landing.html","<div class=\"middle-center\">\n  <h1 class=\"logo landing\">safe families</h1>\n  <!--<p class=\"lead\">\n    Welcome to DC127\'s official site for exchanging resources. Here, you can post specific needs and fill requests that\n    others post. DC127 is a network, and we believe no one can can care for kids alone. We rely on wonderful volunteers\n    like you to connect parents, Host Homes, and Foster Families with the resources they need to successfully care for\n    children.\n  </p>-->\n  <a class=\"btn btn-primary\" href ui-sref=\"log_in\" ng-hide=\"hasUser()\">Log in</a>\n  <a class=\"btn btn-primary\" href ui-sref=\"sign_up\" ng-hide=\"hasUser()\">Sign up</a>\n  <a class=\"btn btn-primary\" href ui-sref=\"app.dashboard\" ng-show=\"hasUser()\">Continue to dashboard</a>\n</div>");
-$templateCache.put("users/views/log_in/log_in.html","<div class=\"row\">\n  <div class=\"col-lg-offset-4 col-lg-4\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        <h4 class=\"panel-title\">Log in</h4>\n      </div>\n      <div class=\"panel-body\">\n        <form name=\"form\" novalidate ng-submit=\"onSubmit()\">\n          <div class=\"alert alert-danger\" ng-if=\"hasError()\">{{ error.detail }}</div>\n          <div class=\"form-group\">\n            <label for=\"username\">Username:</label>\n            <input id=\"username\" class=\"form-control\" type=\"text\" ng-model=\"username\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"password\">Password:</label>\n            <input id=\"password\" class=\"form-control\" type=\"password\" ng-model=\"password\" required>\n          </div>\n          <button class=\"btn btn-primary btn-block\" type=\"submit\" ng-disabled=\"form.$invalid\">Log in\n          </button>\n        </form>\n      </div>\n    </div>\n    <p class=\"text-center\">Don\'t have an account? <a href ui-sref=\"sign_up\">Sign up!</a></p>\n  </div>\n</div>");
-$templateCache.put("users/views/profile_detail/profile_detail.html","<div class=\"row\">\n  <div class=\"col-lg-offset-4 col-lg-4\">\n    <div class=\"text-center\">\n      <a href ui-sref=\"app.profile.edit\">\n        <img class=\"img-circle center-block\" ng-src=\"{{ models.photo }}\" width=\"160\">\n      </a>\n      <div class=\"details-display\">\n        <div ng-if=\"selectedDetail === \'name\'\">\n          <p>Hi, my name is</p>\n          <h4>{{ models.full_name }}</h4>\n        </div>\n        <div ng-if=\"selectedDetail === \'email\'\">\n          <p>My email address is</p>\n          <h4>{{ models.email }}</h4>\n        </div>\n        <div ng-if=\"selectedDetail === \'address\'\">\n          <p>My address is</p>\n          <h4>{{ models.full_address }}</h4>\n        </div>\n        <div ng-if=\"selectedDetail === \'phone\'\">\n          <p>My phone number is</p>\n          <h4>{{ models.phone_number }}</h4>\n        </div>\n      </div>\n      <ul class=\"details-list list-inline\">\n        <li ng-mouseenter=\"setSelectedDetail(\'name\')\" ng-click=\"setSelectedDetail(\'name\')\">\n          <i class=\"fa fa-user\"></i>\n        </li>\n        <li ng-mouseenter=\"setSelectedDetail(\'email\')\" ng-click=\"setSelectedDetail(\'email\')\">\n          <i class=\"fa fa-envelope\"></i>\n        </li>\n        <li ng-mouseenter=\"setSelectedDetail(\'address\')\" ng-click=\"setSelectedDetail(\'address\')\">\n          <i class=\"fa fa-map-marker\"></i>\n        </li>\n        <li ng-mouseenter=\"setSelectedDetail(\'phone\')\" ng-click=\"setSelectedDetail(\'phone\')\">\n          <i class=\"fa fa-phone\"></i>\n        </li>\n      </ul>\n    </div>\n  </div>\n</div>");
-$templateCache.put("users/views/profile_edit/profile_edit.html","<div class=\"row\">\n  <div class=\"col-lg-offset-4 col-lg-4\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        <h4 class=\"panel-title\">Profile</h4>\n      </div>\n      <div class=\"panel-body\">\n        <form name=\"form\" novalidate ng-submit=\"onSubmit()\">\n          <div class=\"form-group\">\n            <label for=\"first-name\">First name:</label>\n            <input id=\"first-name\" class=\"form-control\" type=\"text\" ng-value=\"models.first_name\" ng-model=\"models.first_name\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"last-name\">Last name:</label>\n            <input id=\"last-name\" class=\"form-control\" type=\"text\" ng-value=\"models.last_name\" ng-model=\"models.last_name\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"address\">Address:</label>\n            <input id=\"address\" class=\"form-control\" type=\"text\" ng-value=\"models.address_1\" ng-model=\"models.address_1\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"address-2\">Address (line 2):</label>\n            <input id=\"address-2\" class=\"form-control\" type=\"text\" ng-value=\"models.address_2\" ng-model=\"models.address_2\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"city\">City:</label>\n            <input id=\"city\" class=\"form-control\" type=\"text\" ng-value=\"models.city\" ng-model=\"models.city\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"state\">State:</label>\n            <input id=\"state\" class=\"form-control\" type=\"text\" ng-value=\"models.state\" ng-model=\"models.state\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"zip-code\">Zip code:</label>\n            <input id=\"zip-code\" class=\"form-control\" type=\"text\" ng-value=\"models.zip_code\" ng-model=\"models.zip_code\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"phone-number\">Phone number:</label>\n            <input id=\"phone-number\" class=\"form-control\" type=\"text\" ng-value=\"models.phone_number\" ng-model=\"models.phone_number\" required>\n          </div>\n          <button class=\"btn btn-primary btn-block\" type=\"submit\" ng-disabled=\"form.$invalid\">Update</button>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>");
-$templateCache.put("users/views/sign_up/sign_up.html","<div class=\"row\">\n  <div class=\"col-lg-offset-4 col-lg-4\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        <h4 class=\"panel-title\">Sign up</h4>\n      </div>\n      <div class=\"panel-body\">\n        <form name=\"form\" novalidate ng-submit=\"onSubmit()\">\n          <div class=\"form-group\" ng-class=\"{\n            \'has-error\': error.username,\n            \'has-feedback\': error.username\n          }\">\n            <label for=\"username\" class=\"control-label\">Username:</label>\n            <input id=\"username\" class=\"form-control\" type=\"text\" ng-model=\"username\" required>\n            <span class=\"help-block\" ng-if=\"error.username\">{{ error.username[0] }}</span>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"email\">Email:</label>\n            <input id=\"email\" class=\"form-control\" type=\"text\" ng-model=\"email\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"password\">Password:</label>\n            <input id=\"password\" class=\"form-control\" type=\"password\" ng-model=\"password\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"password-confirmation\">Password (again):</label>\n            <input id=\"password-confirmation\" class=\"form-control\" type=\"password\" ng-model=\"passwordAgain\" required>\n          </div>\n          <button class=\"btn btn-primary btn-block\" type=\"submit\" ng-disabled=\"form.$invalid || !passwordsMatch()\">Sign up\n          </button>\n        </form>\n      </div>\n    </div>\n    <p class=\"text-center\">Already have an account? <a href ui-sref=\"log_in\">Log in!</a></p>\n  </div>\n</div>");}]);
+angular.module("templates").run(["$templateCache", function($templateCache) {$templateCache.put("dashboard/views/assign_need_modal/assign_need_modal.html","<div class=\"modal-header\">\r\n  <h4 class=\"modal-title\">Assign Need</h4>\r\n</div>\r\n<div class=\"modal-body\">\r\n  <p class=\"lead\">Will you donate {{ need.quantity }} {{ need._need.name }}?</p>\r\n  <p><strong>Description</strong></p>\r\n  <p>{{ need._need.description }}</p>\r\n</div>\r\n<div class=\"modal-footer\">\r\n  <button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">No</button>\r\n  <button class=\"btn btn-primary\" type=\"submit\" ng-click=\"ok()\">Yes</button>\r\n</div>");
+$templateCache.put("dashboard/views/dashboard/dashboard.html","<div class=\"row\">\r\n  <div class=\"col-lg-12\">\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\">\r\n        <h4 class=\"panel-title\">\r\n          Requested Needs <span class=\"badge pull-right\">{{ models.requestedNeeds.length }}</span>\r\n        </h4>\r\n      </div>\r\n      <div class=\"panel-body text-center\" ng-if=\"models.requestedNeeds.length === 0\">\r\n        No one has requested anything...\r\n      </div>\r\n      <table class=\"table table-responsive\" ng-if=\"models.requestedNeeds.length > 0\">\r\n        <thead>\r\n        <tr>\r\n          <th>Quantity</th>\r\n          <th>Name</th>\r\n          <th>Due Date</th>\r\n          <th>Address</th>\r\n          <th class=\"text-right\">Action</th>\r\n        </tr>\r\n        </thead>\r\n        <tbody>\r\n        <tr ng-repeat=\"need in models.requestedNeeds\">\r\n          <td>{{ need.quantity }}</td>\r\n          <td>{{ need._need.name }}</td>\r\n          <td>{{ need.due_date | date:\'shortDate\'}}</td>\r\n          <td></td>\r\n          <td class=\"text-right\"><a href ng-click=\"openAssignNeed(need)\">Accept</a></td>\r\n        </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\">\r\n        <h4 class=\"panel-title\">\r\n          Your Pending Needs <span class=\"badge pull-right\">{{ models.pendingNeeds.length }}</span>\r\n        </h4>\r\n      </div>\r\n      <div class=\"panel-body text-center\" ng-if=\"models.pendingNeeds.length === 0\">\r\n        You haven\'t committed to any requests...\r\n      </div>\r\n      <table class=\"table table-responsive\" ng-if=\"models.pendingNeeds.length > 0\">\r\n        <thead>\r\n        <tr>\r\n          <th>Quantity</th>\r\n          <th>Name</th>\r\n          <th class=\"text-right\">Action</th>\r\n        </tr>\r\n        </thead>\r\n        <tbody>\r\n        <tr ng-repeat=\"need in models.pendingNeeds\">\r\n          <td>{{ need.quantity }}</td>\r\n          <td>{{ need._need.name }}</td>\r\n          <td class=\"text-right\"><a href ng-click=\"openReturnNeed(need)\" ng-if=\"need.hasCommitment\">Return</a></td>\r\n          <!-- adding \'Completed\' button 05/09 -->\r\n          <td class=\"text-right\"><a <!-- href ng-click=\"openReturnNeed(need)\" ng-if=\"need.hasCommitment\"> --> Completed</a></td>\r\n        </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n  </div>\r\n</div>");
+$templateCache.put("dashboard/views/return_need_modal/return_need_modal.html","<div class=\"modal-header\">\r\n  <h4 class=\"modal-title\">Return Need</h4>\r\n</div>\r\n<div class=\"modal-body\">\r\n  <p class=\"lead\">Do you want us to assign {{ need.quantity }} {{ need._need.name }} to someone else?</p>\r\n  <p><strong>Description</strong></p>\r\n  <p>{{ need._need.description }}</p>\r\n</div>\r\n<div class=\"modal-footer\">\r\n  <button class=\"btn btn-default\" type=\"button\" ng-click=\"cancel()\">No</button>\r\n  <button class=\"btn btn-primary\" type=\"submit\" ng-click=\"ok()\">Yes</button>\r\n</div>");
+$templateCache.put("global/views/landing/landing.html","<div class=\"middle-center\">\r\n  <h1 class=\"logo landing\">safe families</h1>\r\n  <!--<p class=\"lead\">\r\n    Welcome to DC127\'s official site for exchanging resources. Here, you can post specific needs and fill requests that\r\n    others post. DC127 is a network, and we believe no one can can care for kids alone. We rely on wonderful volunteers\r\n    like you to connect parents, Host Homes, and Foster Families with the resources they need to successfully care for\r\n    children.\r\n  </p>-->\r\n  <a class=\"btn btn-primary\" href ui-sref=\"log_in\" ng-hide=\"hasUser()\">Log in</a>\r\n  <a class=\"btn btn-primary\" href ui-sref=\"sign_up\" ng-hide=\"hasUser()\">Sign up</a>\r\n  <a class=\"btn btn-primary\" href ui-sref=\"app.dashboard\" ng-show=\"hasUser()\">Continue to dashboard</a>\r\n</div>");
+$templateCache.put("users/views/log_in/log_in.html","<div class=\"row\">\r\n  <div class=\"col-lg-offset-4 col-lg-4\">\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\">\r\n        <h4 class=\"panel-title\">Log in</h4>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <form name=\"form\" novalidate ng-submit=\"onSubmit()\">\r\n          <div class=\"alert alert-danger\" ng-if=\"hasError()\">{{ error.detail }}</div>\r\n          <div class=\"form-group\">\r\n            <label for=\"username\">Username:</label>\r\n            <input id=\"username\" class=\"form-control\" type=\"text\" ng-model=\"username\" required>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"password\">Password:</label>\r\n            <input id=\"password\" class=\"form-control\" type=\"password\" ng-model=\"password\" required>\r\n          </div>\r\n          <button class=\"btn btn-primary btn-block\" type=\"submit\" ng-disabled=\"form.$invalid\">Log in\r\n          </button>\r\n        </form>\r\n      </div>\r\n    </div>\r\n    <p class=\"text-center\">Don\'t have an account? <a href ui-sref=\"sign_up\">Sign up!</a></p>\r\n  </div>\r\n</div>");
+$templateCache.put("users/views/profile_detail/profile_detail.html","<div class=\"row\">\r\n  <div class=\"col-lg-offset-4 col-lg-4\">\r\n    <div class=\"text-center\">\r\n      <a href ui-sref=\"app.profile.edit\">\r\n        <img class=\"img-circle center-block\" ng-src=\"{{ models.photo }}\" width=\"160\">\r\n      </a>\r\n      <div class=\"details-display\">\r\n        <div ng-if=\"selectedDetail === \'name\'\">\r\n          <p>Hi, my name is</p>\r\n          <h4>{{ models.full_name }}</h4>\r\n        </div>\r\n        <div ng-if=\"selectedDetail === \'email\'\">\r\n          <p>My email address is</p>\r\n          <h4>{{ models.email }}</h4>\r\n        </div>\r\n        <div ng-if=\"selectedDetail === \'address\'\">\r\n          <p>My address is</p>\r\n          <h4>{{ models.full_address }}</h4>\r\n        </div>\r\n        <div ng-if=\"selectedDetail === \'phone\'\">\r\n          <p>My phone number is</p>\r\n          <h4>{{ models.phone_number }}</h4>\r\n        </div>\r\n      </div>\r\n      <ul class=\"details-list list-inline\">\r\n        <li ng-mouseenter=\"setSelectedDetail(\'name\')\" ng-click=\"setSelectedDetail(\'name\')\">\r\n          <i class=\"fa fa-user\"></i>\r\n        </li>\r\n        <li ng-mouseenter=\"setSelectedDetail(\'email\')\" ng-click=\"setSelectedDetail(\'email\')\">\r\n          <i class=\"fa fa-envelope\"></i>\r\n        </li>\r\n        <li ng-mouseenter=\"setSelectedDetail(\'address\')\" ng-click=\"setSelectedDetail(\'address\')\">\r\n          <i class=\"fa fa-map-marker\"></i>\r\n        </li>\r\n        <li ng-mouseenter=\"setSelectedDetail(\'phone\')\" ng-click=\"setSelectedDetail(\'phone\')\">\r\n          <i class=\"fa fa-phone\"></i>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</div>");
+$templateCache.put("users/views/profile_edit/profile_edit.html","<div class=\"row\">\r\n  <div class=\"col-lg-offset-4 col-lg-4\">\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\">\r\n        <h4 class=\"panel-title\">Profile</h4>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <form name=\"form\" novalidate ng-submit=\"onSubmit()\">\r\n          <div class=\"form-group\">\r\n            <label for=\"first-name\">First name:</label>\r\n            <input id=\"first-name\" class=\"form-control\" type=\"text\" ng-value=\"models.first_name\" ng-model=\"models.first_name\" required>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"last-name\">Last name:</label>\r\n            <input id=\"last-name\" class=\"form-control\" type=\"text\" ng-value=\"models.last_name\" ng-model=\"models.last_name\" required>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"address\">Address:</label>\r\n            <input id=\"address\" class=\"form-control\" type=\"text\" ng-value=\"models.address_1\" ng-model=\"models.address_1\" required>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"address-2\">Address (line 2):</label>\r\n            <input id=\"address-2\" class=\"form-control\" type=\"text\" ng-value=\"models.address_2\" ng-model=\"models.address_2\">\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"city\">City:</label>\r\n            <input id=\"city\" class=\"form-control\" type=\"text\" ng-value=\"models.city\" ng-model=\"models.city\" required>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"state\">State:</label>\r\n            <input id=\"state\" class=\"form-control\" type=\"text\" ng-value=\"models.state\" ng-model=\"models.state\" required>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"zip-code\">Zip code:</label>\r\n            <input id=\"zip-code\" class=\"form-control\" type=\"text\" ng-value=\"models.zip_code\" ng-model=\"models.zip_code\" required>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"phone-number\">Phone number:</label>\r\n            <input id=\"phone-number\" class=\"form-control\" type=\"text\" ng-value=\"models.phone_number\" ng-model=\"models.phone_number\" required>\r\n          </div>\r\n          <button class=\"btn btn-primary btn-block\" type=\"submit\" ng-disabled=\"form.$invalid\">Update</button>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>");
+$templateCache.put("users/views/sign_up/sign_up.html","<div class=\"row\">\r\n  <div class=\"col-lg-offset-4 col-lg-4\">\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\">\r\n        <h4 class=\"panel-title\">Sign up</h4>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <form name=\"form\" novalidate ng-submit=\"onSubmit()\">\r\n          <div class=\"form-group\" ng-class=\"{\r\n            \'has-error\': error.username,\r\n            \'has-feedback\': error.username\r\n          }\">\r\n            <label for=\"username\" class=\"control-label\">Username:</label>\r\n            <input id=\"username\" class=\"form-control\" type=\"text\" ng-model=\"username\" required>\r\n            <span class=\"help-block\" ng-if=\"error.username\">{{ error.username[0] }}</span>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"email\">Email:</label>\r\n            <input id=\"email\" class=\"form-control\" type=\"text\" ng-model=\"email\" required>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"password\">Password:</label>\r\n            <input id=\"password\" class=\"form-control\" type=\"password\" ng-model=\"password\" required>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"password-confirmation\">Password (again):</label>\r\n            <input id=\"password-confirmation\" class=\"form-control\" type=\"password\" ng-model=\"passwordAgain\" required>\r\n          </div>\r\n          <button class=\"btn btn-primary btn-block\" type=\"submit\" ng-disabled=\"form.$invalid || !passwordsMatch()\">Sign up\r\n          </button>\r\n        </form>\r\n      </div>\r\n    </div>\r\n    <p class=\"text-center\">Already have an account? <a href ui-sref=\"log_in\">Log in!</a></p>\r\n  </div>\r\n</div>");}]);
