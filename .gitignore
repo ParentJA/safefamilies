@@ -1,1 +1,4 @@
 *.sqlite3
+*.pyc
+bower_components/
+node_modules/

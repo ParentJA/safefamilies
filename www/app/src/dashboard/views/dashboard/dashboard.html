@@ -14,6 +14,8 @@
         <tr>
           <th>Quantity</th>
           <th>Name</th>
+          <th>Due Date</th>
+          <th>Address</th>
           <th class="text-right">Action</th>
         </tr>
         </thead>
@@ -21,7 +23,9 @@
         <tr ng-repeat="need in models.requestedNeeds">
           <td>{{ need.quantity }}</td>
           <td>{{ need._need.name }}</td>
-          <td class="text-right"><a href ng-click="openAssignNeed(need)">Assign</a></td>
+          <td>{{ need.due_date | date:'shortDate'}}</td>
+          <td></td>
+          <td class="text-right"><a href ng-click="openAssignNeed(need)">Accept</a></td>
         </tr>
         </tbody>
       </table>
@@ -30,7 +34,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          Pending Needs <span class="badge pull-right">{{ models.pendingNeeds.length }}</span>
+          Your Pending Needs <span class="badge pull-right">{{ models.pendingNeeds.length }}</span>
         </h4>
       </div>
       <div class="panel-body text-center" ng-if="models.pendingNeeds.length === 0">
@@ -49,6 +53,8 @@
           <td>{{ need.quantity }}</td>
           <td>{{ need._need.name }}</td>
           <td class="text-right"><a href ng-click="openReturnNeed(need)" ng-if="need.hasCommitment">Return</a></td>
+          <!-- adding 'Completed' button 05/09 -->
+          <td class="text-right"><a <!-- href ng-click="openReturnNeed(need)" ng-if="need.hasCommitment"> --> Completed</a></td>
         </tr>
         </tbody>
       </table>
