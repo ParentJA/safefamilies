@@ -25,15 +25,15 @@ class Need(admin.ModelAdmin):
 
 @admin.register(Recipient)
 class RecipientAdmin(admin.ModelAdmin):
-    fields = ('first_name', 'last_name', 'phone_number', 'address_1', 'address_2', 'city', 'state', 'zip_code')
-    list_display = ('first_name', 'last_name', 'phone_number', 'address_1', 'address_2', 'city', 'state', 'zip_code')
+    fields = ('first_name', 'last_name', 'phone_number', 'email', 'address_1', 'address_2', 'city', 'state', 'zip_code')
+    list_display = ('first_name', 'last_name', 'phone_number', 'email', 'address_1', 'address_2', 'city', 'state', 'zip_code')
 
 
 @admin.register(RecipientNeed)
 class RecipientNeedAdmin(admin.ModelAdmin):
-    fields = ('recipient', 'need', 'quantity', 'status', 'created', 'updated')
+    fields = ('recipient', 'need', 'quantity', 'due_date', 'status', 'created', 'updated')
     readonly_fields = ('created', 'updated')
-    list_display = ('recipient', 'need', 'quantity', 'status', 'created', 'updated')
+    list_display = ('recipient', 'need', 'quantity', 'due_date', 'status', 'created', 'updated')
     # raw_id_fields = ('recipient', 'need')
     # list_select_related = ('recipient', 'need')
     # autocomplete_lookup_fields = {

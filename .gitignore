@@ -1,2 +1,3 @@
-*.sqlite3
-dist/
+*.sqlite3dist/
+bower_components/
+node_modules/
