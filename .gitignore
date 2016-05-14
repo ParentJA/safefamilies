@@ -1,3 +1,5 @@
-*.sqlite3dist/
+*.sqlite3
+media/
+dist/
 bower_components/
 node_modules/
