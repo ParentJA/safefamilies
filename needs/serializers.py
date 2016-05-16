@@ -25,18 +25,27 @@ class CommitmentSerializer(serializers.ModelSerializer):
 
 
 class NeedSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        return Need.objects.create(**validated_data)
+
     class Meta:
         model = Need
         fields = ('id', 'name', 'description')
 
 
 class RecipientSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        return Recipient.objects.create(**validated_data)
+
     class Meta:
         model = Recipient
-        fields = ('id', 'first_name', 'last_name')
+        fields = ('id', 'first_name', 'last_name', 'address_1')
 
 
 class RecipientNeedSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        return RecipientNeed.objects.create(**validated_data)
+
     class Meta:
         model = RecipientNeed
         fields = ('id', 'recipient', 'need', 'quantity', 'due_date', 'status')

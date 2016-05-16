@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^need/$', NeedView.as_view()),
     url(r'^recipient/$', RecipientView.as_view()),
     url(r'^recipient_need/$', RecipientNeedView.as_view({
-        'get': 'list'
+        'get': 'list',
+        'post': 'create'
     })),
 ]

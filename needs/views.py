@@ -98,3 +98,18 @@ class RecipientNeedView(viewsets.ViewSet):
             'recipient': RecipientSerializer(recipients, many=True).data,
             'need': NeedSerializer(needs, many=True).data
         })
+
+    def create(self, request):
+        recipient_serializer = RecipientSerializer()
+        recipient = recipient_serializer.create(request.data.get('recipient'))
+        need_serializer = NeedSerializer()
+        need = need_serializer.create(request.data.get('need'))
+        recipient_need_serializer = RecipientNeedSerializer()
+        recipient_need_data = request.data.get('recipient_need')
+        recipient_need_data.update({
+            'recipient': recipient,
+            'need': need
+        })
+        recipient_need = recipient_need_serializer.create(recipient_need_data)
+
+        return self.list(request)

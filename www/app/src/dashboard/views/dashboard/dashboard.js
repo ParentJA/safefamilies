@@ -3,7 +3,7 @@
   "use strict";
 
   function DashboardController($scope, $uibModal, CommitmentResource, CommitmentStatus, commitments,
-                               recipientNeedService, userProfile) {
+                               RecipientNeedResource, recipientNeedService, userProfile) {
     $scope.models = {
       commitments: commitments.getCommitments(),
       pendingNeeds: recipientNeedService.getPendingNeeds(),
@@ -28,6 +28,14 @@
 
     function returnNeed(need) {
       CommitmentResource.destroy(need._commitment.id).then(updateNeeds);
+    }
+
+    function addNeed(parts) {
+      RecipientNeedResource.create({
+        recipient: parts.part1,
+        need: parts.part2,
+        recipient_need: parts.part3
+      }).then(updateNeeds);
     }
 
     $scope.openAssignNeed = function openAssignNeed(need) {
@@ -59,12 +67,22 @@
 
       modalInstance.result.then(returnNeed);
     };
+
+    $scope.openAddNeed = function openAddNeed() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: "dashboard/views/add_need_modal/add_need_modal.html",
+        controller: "AddNeedModalController"
+      });
+
+      modalInstance.result.then(addNeed);
+    };
   }
 
   angular.module("safefamilies")
     .controller("DashboardController", [
-      "$scope", "$uibModal", "CommitmentResource", "CommitmentStatus", "commitments", "recipientNeedService",
-      "userProfile", DashboardController
+      "$scope", "$uibModal", "CommitmentResource", "CommitmentStatus", "commitments", "RecipientNeedResource",
+      "recipientNeedService", "userProfile", DashboardController
     ]);
 
 })(window, window.angular);

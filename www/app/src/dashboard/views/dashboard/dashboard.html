@@ -23,12 +23,15 @@
         <tr ng-repeat="need in models.requestedNeeds">
           <td>{{ need.quantity }}</td>
           <td>{{ need._need.name }}</td>
-          <td>{{ need.due_date | date:'shortDate'}}</td>
-          <td></td>
+          <td>{{ (need.due_date | date: 'shortDate') || 'N/A' }}</td>
+          <td>{{ need._recipient.address_1 || 'N/A' }}</td>
           <td class="text-right"><a href ng-click="openAssignNeed(need)">Accept</a></td>
         </tr>
         </tbody>
       </table>
+      <div class="panel-footer">
+        <button class="btn btn-primary" ng-click="openAddNeed()">Add need</button>
+      </div>
     </div>
 
     <div class="panel panel-default">

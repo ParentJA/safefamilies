@@ -16,6 +16,20 @@
 
       return deferred.promise;
     };
+
+    this.create = function create(data) {
+      var deferred = $q.defer();
+
+      $http.post(BASE_URL + "needs/recipient_need/", data).then(function (response) {
+        RecipientNeed.updateList(response.data);
+        deferred.resolve(RecipientNeed);
+      }, function (response) {
+        console.error("Failed to create recipient needs.");
+        deferred.reject(response.data);
+      });
+
+      return deferred.promise;
+    };
   }
 
   angular.module("safefamilies")
