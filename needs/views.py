@@ -46,6 +46,29 @@ class CommitmentView(viewsets.ViewSet):
             'recipient_need': RecipientNeedSerializer(recipient_need).data
         })
 
+    def update(self, request, pk):
+        try:
+            commitment = get_commitments(request.user).get(pk=pk)
+        except Commitment.DoesNotExist:
+            raise NotFound()
+
+        # Only support changing status to FINISHED at this point.
+        commitment_status = request.data.get('status')
+
+        # Update RecipientNeed status to RECEIVED. A user completed a commitment to fill a need.
+        recipient_need = commitment.recipient_need
+        recipient_need.status = RecipientNeed.RECEIVED
+        recipient_need.save()
+
+        # Update Commitment status to FINISHED.
+        commitment.status = Commitment.FINISHED
+        commitment.save()
+
+        return Response(status=HTTP_200_OK, data={
+            'commitment': CommitmentSerializer(commitment).data,
+            'recipient_need': RecipientNeedSerializer(recipient_need).data
+        })
+
     def destroy(self, request, pk):
         try:
             commitment = get_commitments(request.user).get(pk=pk)

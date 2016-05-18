@@ -46,6 +46,10 @@
     };
 
     this.getFullAddress = function getFullAddress() {
+      if (_.some([userProfile.address_1, userProfile.city, userProfile.state, userProfile.zip_code], _.isEmpty)) {
+        return null;
+      }
+
       var address = userProfile.address_1;
 
       if (userProfile.address_2) {

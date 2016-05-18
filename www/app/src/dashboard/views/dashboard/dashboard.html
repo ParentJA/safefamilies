@@ -30,7 +30,7 @@
         </tbody>
       </table>
       <div class="panel-footer">
-        <button class="btn btn-primary" ng-click="openAddNeed()">Add need</button>
+        <button class="btn btn-primary" ng-click="openAddNeed()"><i class="fa fa-plus"></i> Post a need</button>
       </div>
     </div>
 
@@ -48,16 +48,20 @@
         <tr>
           <th>Quantity</th>
           <th>Name</th>
-          <th class="text-right">Action</th>
+          <th>Action</th>
+          <th>Completed</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="need in models.pendingNeeds">
           <td>{{ need.quantity }}</td>
           <td>{{ need._need.name }}</td>
-          <td class="text-right"><a href ng-click="openReturnNeed(need)" ng-if="need.hasCommitment">Return</a></td>
-          <!-- adding 'Completed' button 05/09 -->
-          <td class="text-right"><a <!-- href ng-click="openReturnNeed(need)" ng-if="need.hasCommitment"> --> Completed</a></td>
+          <td>
+            <a href ng-click="openReturnNeed(need)" ng-if="need.hasCommitment">Return</a>
+          </td>
+          <td>
+            <input type="checkbox" ng-click="setCompleted($event, need)">
+          </td>
         </tr>
         </tbody>
       </table>

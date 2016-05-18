@@ -46,6 +46,23 @@
 
       return deferred.promise;
     };
+    
+    this.update = function update(id, status) {
+      var deferred = $q.defer();
+
+      $http.put(BASE_URL + "needs/commitment/" + id + "/", {
+        status: status
+      }).then(function (response) {
+        Commitment.removeDict(id);
+        RecipientNeed.updateDict(response.data);
+        deferred.resolve(Commitment);
+      }, function (response) {
+        console.error("Failed to update commitment with ID " + id + ".");
+        deferred.reject(response);
+      });
+
+      return deferred.promise;
+    }
   }
 
   angular.module("safefamilies")

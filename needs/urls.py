@@ -12,7 +12,8 @@ urlpatterns = [
         'post': 'create'
     })),
     url(r'^commitment/(?P<pk>\d+)/$', CommitmentView.as_view({
-        'delete': 'destroy'
+        'delete': 'destroy',
+        'put': 'update'
     })),
     url(r'^need/$', NeedView.as_view()),
     url(r'^recipient/$', RecipientView.as_view()),

@@ -77,6 +77,14 @@
 
       modalInstance.result.then(addNeed);
     };
+
+    $scope.setCompleted = function setCompleted(event, need) {
+      // Disable the input.
+      event.currentTarget.disabled = true;
+
+      // Update the need and remove it from the UI.
+      CommitmentResource.update(need._commitment.id, "F").then(updateNeeds);
+    };
   }
 
   angular.module("safefamilies")
