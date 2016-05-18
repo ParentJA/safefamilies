@@ -51,6 +51,8 @@ class RecipientNeed(models.Model):
     need = models.ForeignKey('needs.Need')
     quantity = models.IntegerField()
     due_date = models.DateTimeField(null = True, blank = True)
+    # 05/18 AK added next line
+    address_1 = models.CharField(max_length=255, blank=True, null=True)
     status = models.CharField(max_length=3, choices=RECIPIENT_NEED_STATUSES, default=REQUESTED)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     updated = models.DateTimeField(auto_now=True)\

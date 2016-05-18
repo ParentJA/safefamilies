@@ -24,7 +24,7 @@
           <td>{{ need.quantity }}</td>
           <td>{{ need._need.name }}</td>
           <td>{{ need.due_date | date:'shortDate'}}</td>
-          <td></td>
+          <td>{{ need.address_1 }} </td>
           <td class="text-right"><a href ng-click="openAssignNeed(need)">Accept</a></td>
         </tr>
         </tbody>
