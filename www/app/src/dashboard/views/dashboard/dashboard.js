@@ -38,6 +38,14 @@
       }).then(updateNeeds);
     }
 
+    function complete(result) {
+      // Disable the input.
+      result.event.currentTarget.disabled = true;
+
+      // Update the need and remove it from the UI.
+      CommitmentResource.update(result.need._commitment.id, "F").then(updateNeeds);
+    }
+
     $scope.openAssignNeed = function openAssignNeed(need) {
       var modalInstance = $uibModal.open({
         animation: true,
@@ -78,12 +86,24 @@
       modalInstance.result.then(addNeed);
     };
 
-    $scope.setCompleted = function setCompleted(event, need) {
-      // Disable the input.
-      event.currentTarget.disabled = true;
+    $scope.openCompleted = function openCompleted(event, need) {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: "dashboard/views/completed_modal/completed_modal.html",
+        controller: "CompletedModalController",
+        resolve: {
+          event: function () {
+            return event;
+          },
+          need: function () {
+            return need;
+          }
+        }
+      });
 
-      // Update the need and remove it from the UI.
-      CommitmentResource.update(need._commitment.id, "F").then(updateNeeds);
+      modalInstance.result.then(complete, function (event) {
+        event.currentTarget.checked = false;
+      });
     };
   }
 
