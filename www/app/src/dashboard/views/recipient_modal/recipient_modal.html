@@ -1,8 +1,8 @@
 <div class="modal-header">
-  <h4 class="modal-title">Assign Need</h4>
+  <h4 class="modal-title">Recipient Need</h4>
 </div>
 <div class="modal-body">
-  <p class="lead">Will you donate {{ need.quantity }} {{ need._need.name }}?</p>
+  <p class="lead">You are donating {{ need.quantity }} {{ need._need.name }}.</p>
   <p><strong>Description</strong></p>
   <p>{{ need._need.description }}</p>
   <p><strong>Requested By</strong></p>
@@ -14,6 +14,5 @@
   </ul>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-default" type="button" ng-click="cancel()">No</button>
-  <button class="btn btn-primary" type="submit" ng-click="ok()">Yes</button>
+  <button class="btn btn-primary" type="button" ng-click="cancel()">OK</button>
 </div>

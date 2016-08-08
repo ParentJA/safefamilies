@@ -2,7 +2,7 @@
 
   "use strict";
 
-  function AssignNeedModalController($scope, $uibModalInstance, need, userService) {
+  function RecipientModalController($scope, $uibModalInstance, need, userService) {
     $scope.need = need;
 
     $scope.getFullName = function getFullName(user) {
@@ -21,17 +21,13 @@
       return userService.getPhoneNumber(user);
     };
 
-    $scope.ok = function ok() {
-      $uibModalInstance.close(need);
-    };
-
     $scope.cancel = function cancel() {
       $uibModalInstance.dismiss("cancel");
     };
   }
 
   angular.module("safefamilies")
-    .controller("AssignNeedModalController", [
-      "$scope", "$uibModalInstance", "need", "userService", AssignNeedModalController]);
+    .controller("RecipientModalController", [
+      "$scope", "$uibModalInstance", "need", "userService", RecipientModalController]);
 
 })(window, window.angular);

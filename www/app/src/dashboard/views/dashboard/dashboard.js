@@ -76,6 +76,19 @@
       modalInstance.result.then(returnNeed);
     };
 
+    $scope.openRecipient = function openRecipient(need) {
+      $uibModal.open({
+        animation: true,
+        templateUrl: "dashboard/views/recipient_modal/recipient_modal.html",
+        controller: "RecipientModalController",
+        resolve: {
+          need: function () {
+            return need;
+          }
+        }
+      });
+    };
+
     $scope.openAddNeed = function openAddNeed() {
       var modalInstance = $uibModal.open({
         animation: true,

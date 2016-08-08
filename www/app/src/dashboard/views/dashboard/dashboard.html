@@ -55,7 +55,9 @@
         <tbody>
         <tr ng-repeat="need in models.pendingNeeds">
           <td>{{ need.quantity }}</td>
-          <td>{{ need._need.name }}</td>
+          <td>
+            <a href ng-click="openRecipient(need)">{{ need._need.name }}</a>
+          </td>
           <td>
             <a href ng-click="openReturnNeed(need)" ng-if="need.hasCommitment">Return</a>
           </td>

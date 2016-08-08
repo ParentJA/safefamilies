@@ -39,7 +39,8 @@ class RecipientSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipient
-        fields = ('id', 'first_name', 'last_name', 'address_1')
+        fields = ('id', 'first_name', 'last_name', 'address_1', 'address_2', 'city', 'state', 'zip_code',
+                  'phone_number', 'email')
 
 
 class RecipientNeedSerializer(serializers.ModelSerializer):
