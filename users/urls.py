@@ -1,7 +1,7 @@
-# Django imports...
+# Django imports.
 from django.conf.urls import url
 
-# Local imports...
+# Local imports.
 from .views import UserProfileView
 
 __author__ = 'Jason Parent'

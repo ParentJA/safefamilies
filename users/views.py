@@ -1,10 +1,10 @@
-# Third-party imports...
+# Third-party imports.
 from rest_framework import views
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 
-# Local imports...
+# Local imports.
 from .models import UserProfile
 from .serializers import UserProfileSerializer
 

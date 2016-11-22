@@ -1,7 +1,7 @@
-# Django imports...
+# Django imports.
 from django.contrib import admin
 
-# Local imports...
+# Local imports.
 from .models import UserProfile
 
 __author__ = 'Jason Parent'

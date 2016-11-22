@@ -1,7 +1,7 @@
-# Third-party imports...
+# Third-party imports.
 from rest_framework import serializers
 
-# Local imports...
+# Local imports.
 from .models import UserProfile
 
 __author__ = 'Jason Parent'
@@ -25,7 +25,5 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = (
-            'first_name', 'last_name', 'email', 'photo', 'address_1', 'address_2', 'city', 'state', 'zip_code',
-            'phone_number'
-        )
+        fields = ('first_name', 'last_name', 'email', 'photo', 'address_1', 'address_2', 'city', 'state', 'zip_code',
+                  'phone_number')

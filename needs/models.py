@@ -1,12 +1,14 @@
-# Third-party imports...
-from localflavor.us.models import PhoneNumberField
-
-# Django imports...
+# Django imports.
 from django.conf import settings
 from django.db import models
 
-# Local imports...
+# Third-party imports.
+from localflavor.us.models import PhoneNumberField
+
+# Local imports.
 from users.models import Address
+
+__author__ = 'Jason Parent'
 
 
 class Need(models.Model):

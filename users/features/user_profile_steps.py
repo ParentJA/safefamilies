@@ -1,4 +1,4 @@
-# Third-party imports...
+# Third-party imports.
 from lettuce import step, world
 
 __author__ = 'Jason Parent'

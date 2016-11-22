@@ -1,7 +1,7 @@
-# Third-party imports...
+# Third-party imports.
 from rest_framework import serializers
 
-# Local imports...
+# Local imports.
 from .models import Commitment, Need, Recipient, RecipientNeed
 
 __author__ = 'Jason Parent'

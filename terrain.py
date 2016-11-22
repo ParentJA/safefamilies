@@ -1,15 +1,15 @@
-# Standard library imports
+# Standard library imports.
 from itertools import izip_longest
 
-# Third-party imports...
-from lettuce import before, step, world
-from nose.tools import assert_dict_contains_subset, assert_dict_equal, assert_equal
-
-# Django imports...
+# Django imports.
 import django
 from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.test import Client
+
+# Third-party imports.
+from lettuce import before, step, world
+from nose.tools import assert_dict_contains_subset, assert_dict_equal, assert_equal
 
 __author__ = 'Jason Parent'
 

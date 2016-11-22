@@ -1,4 +1,4 @@
-# Third-party imports...
+# Third-party imports.
 from rest_framework import views, viewsets
 from rest_framework.exceptions import NotFound
 from rest_framework.generics import get_object_or_404
@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 
-# Local imports...
+# Local imports.
 from .models import Commitment, Need, Recipient, RecipientNeed
 from .serializers import CommitmentSerializer, NeedSerializer, RecipientSerializer, RecipientNeedSerializer
 

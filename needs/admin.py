@@ -1,8 +1,10 @@
-# Django imports...
+# Django imports.
 from django.contrib import admin
 
-# Local imports...
+# Local imports.
 from .models import Commitment, Need, Recipient, RecipientNeed
+
+__author__ = 'Jason Parent'
 
 
 @admin.register(Commitment)

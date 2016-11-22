@@ -1,5 +1,7 @@
-# Django imports...
+# Django imports.
 from django.apps import AppConfig
+
+__author__ = 'Jason Parent'
 
 
 class UsersConfig(AppConfig):
