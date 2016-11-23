@@ -86,12 +86,13 @@ def log_in_user(step, username):
 
 @step(r'I get a response with the following dict:')
 def get_response_with_dict(step):
-    assert_dict_contains_subset(step.hashes.first, world.response.json())
+    first = step.hashes[0] if isinstance(step.hashes, list) else step.hashes.first
+    assert_dict_contains_subset(first, world.response.data)
 
 
 @step(r'I get a response with the following list:')
 def get_response_with_list(step):
-    for expected, actual in izip_longest(list(step.hashes), world.response.json()):
+    for expected, actual in izip_longest(list(step.hashes), world.response.data):
         assert_dict_contains_subset(expected, actual)
 
 
