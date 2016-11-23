@@ -5,9 +5,9 @@ from django.forms import ValidationError
 # Third-party imports.
 from rest_framework import views
 from rest_framework.exceptions import APIException
+from rest_framework.generics import get_object_or_404, RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK
 
 # Local imports.
 from .models import UserProfile
@@ -16,18 +16,19 @@ from .serializers import UserProfileSerializer
 __author__ = 'Jason Parent'
 
 
-def get_user_profile(user):
-    return UserProfile.objects.select_related('user').get(user=user)
-
-
-class UserProfileView(views.APIView):
+class UserProfileView(RetrieveUpdateAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
     permission_classes = [IsAuthenticated]
 
-    def get(self, request):
-        user_profile = get_user_profile(request.user)
-        return Response(status=HTTP_200_OK, data=UserProfileSerializer(user_profile).data)
+    def get_object(self):
+        return get_object_or_404(UserProfile.objects.select_related('user'), user=self.request.user)
 
-    def post(self, request):
+    def retrieve(self, request, *args, **kwargs):
+        user_profile = self.get_object()
+        return Response(self.serializer_class(user_profile).data)
+
+    def update(self, request, *args, **kwargs):
         # Update user data.
         user = request.user
         user.first_name = request.data.get('first_name', user.first_name)
@@ -35,13 +36,12 @@ class UserProfileView(views.APIView):
         user.save()
 
         # Update user profile data.
-        user_profile = get_user_profile(user)
-        serializer = UserProfileSerializer(user_profile, data=request.data, partial=True)
+        user_profile = self.get_object()
+        serializer = self.serializer_class(user_profile, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        user_profile = serializer.save()
 
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-
-        return Response(status=HTTP_200_OK, data=serializer.data)
+        return Response(self.serializer_class(user_profile).data)
 
 
 class ChangePasswordView(views.APIView):

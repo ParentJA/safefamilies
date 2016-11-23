@@ -3,7 +3,7 @@
   "use strict";
 
   function ProfileEditController($scope, $state, saveUserProfile, userProfile) {
-    $scope.error = {};
+    $scope.errorByField = {};
     $scope.form = "";
     $scope.models = {
       first_name: userProfile.getFirstName(),
@@ -16,15 +16,15 @@
       phone_number: userProfile.getPhoneNumber()
     };
 
-    $scope.hasError = function hasError() {
-      return !_.isEmpty($scope.error);
+    $scope.hasErrors = function hasErrors() {
+      return !_.isEmpty($scope.errorByField);
     };
 
     $scope.onSubmit = function onSubmit() {
       saveUserProfile($scope.models).then(function () {
         $state.go("app.profile.detail");
       }, function (response) {
-        $scope.error = response;
+        $scope.errorByField = response;
       });
     };
   }

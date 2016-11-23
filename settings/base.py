@@ -9,9 +9,7 @@ SECRET_KEY = '$mv-oov!fsbswn5n1qkn8dvs9dn!(4g9reqng&06hb*lpw*%2h'
 
 DEBUG = False
 
-TEMPLATE_DEBUG = DEBUG
-
-ALLOWED_HOSTS = ['dc127resources.org']
+ALLOWED_HOSTS = []
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -24,7 +22,6 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'accounts',
-    'lettuce.django',
     'localflavor',
     'rest_framework',
 ]
@@ -72,7 +69,7 @@ WSGI_APPLICATION = 'safefamilies.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '../database/db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -103,8 +100,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'www/app/dist'),
 )
@@ -114,5 +109,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-
-LETTUCE_USE_TEST_DATABASE = True
