@@ -28,8 +28,8 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    'users.apps.UsersConfig',
-    'needs.apps.NeedsConfig',
+    'users',
+    'needs',
 ]
 
 INSTALLED_APPS = ['grappelli'] + DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
