@@ -65,6 +65,14 @@
           }
         },
         controller: "ProfileEditController"
+      })
+      .state("app.profile.change_password", {
+        url: "/change_password",
+        templateUrl: "users/views/change_password/change_password.html",
+        data: {
+          loginRequired: true
+        },
+        controller: "ChangePasswordController"
       });
   }
 
