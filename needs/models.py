@@ -41,8 +41,6 @@ class Recipient(Address):
 
     email = models.EmailField(null=True, blank=True)
 
-    needs = models.ManyToManyField('needs.Need', through='needs.RecipientNeed', through_fields=('recipient', 'need'))
-
     def get_full_name(self):
         return '{} {}'.format(self.first_name, self.last_name)
 
