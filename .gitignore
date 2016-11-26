@@ -1,6 +1,6 @@
 *.pyc
 *.sqlite3
 media/
-dist/
+# dist/
 bower_components/
 node_modules/
