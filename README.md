@@ -3,12 +3,12 @@
 ## Setup
 
 ```bash
-local:~ user$ mkvirtualenv dc127resources
-(example)local:~ user$ cd ~/Projects
-(example)local:Projects user$ git clone https://github.com/ParentJA/safefamilies.git
-(example)local:Projects user$ cd safefamilies
-(example)local:example-django-redis user$ pip install -r requirements.txt
-(example)local:example-django-redis user$ python manage.py migrate
-(example)local:example-django-redis user$ python manage.py createsuperuser
-(example)local:example-django-redis user$ python manage.py runserver
+local:~ user$ mkvirtualenv safefamilies
+(safefamilies)local:~ user$ cd ~/Projects
+(safefamilies)local:Projects user$ git clone https://github.com/ParentJA/safefamilies.git
+(safefamilies)local:Projects user$ cd safefamilies
+(safefamilies)local:safefamilies user$ pip install -r requirements/local.txt
+(safefamilies)local:safefamilies user$ python manage.py migrate --settings=settings.local
+(safefamilies)local:safefamilies user$ python manage.py createsuperuser --settings=settings.local
+(safefamilies)local:safefamilies user$ python manage.py runserver --settings=settings.local
 ```
