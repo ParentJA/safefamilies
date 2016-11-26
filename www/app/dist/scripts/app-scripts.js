@@ -287,7 +287,7 @@
     vm.openAddNeed = function openAddNeed() {
       var modalInstance = $uibModal.open({
         animation: true,
-        templateUrl: 'dashboard/add_need_modal.html',
+        templateUrl: 'dashboard/add-need-modal.html',
         controller: 'AddNeedModalController',
         controllerAs: 'vm'
       });
@@ -413,50 +413,6 @@
 
   angular.module('safefamilies')
     .controller('ReturnNeedModalController', ['$uibModalInstance', 'need', ReturnNeedModalController]);
-
-})(window, window.angular);
-(function (window, angular, undefined) {
-
-  'use strict';
-
-  function LandingController(AccountModel) {
-    var vm = this;
-
-    vm.hasUser = function hasUser() {
-      return AccountModel.hasUser();
-    };
-  }
-
-  angular.module('safefamilies')
-    .controller('LandingController', ['AccountModel', LandingController]);
-
-})(window, window.angular);
-(function (window, angular, undefined) {
-
-  'use strict';
-
-  function navigationService() {
-    var navigationOpen = false;
-
-    this.closeNavigation = function closeNavigation() {
-      navigationOpen = false;
-    };
-
-    this.isNavigationOpen = function isNavigationOpen() {
-      return navigationOpen;
-    };
-
-    this.openNavigation = function openNavigation() {
-      navigationOpen = true;
-    };
-
-    this.toggleNavigation = function toggleNavigation() {
-      navigationOpen = !navigationOpen;
-    };
-  }
-
-  angular.module('safefamilies')
-    .service('navigationService', [navigationService]);
 
 })(window, window.angular);
 (function (window, angular, undefined) {
@@ -713,6 +669,50 @@
       REQUESTED: 'REQ'
     })
     .service('RecipientNeed', [RecipientNeed]);
+
+})(window, window.angular);
+(function (window, angular, undefined) {
+
+  'use strict';
+
+  function LandingController(AccountModel) {
+    var vm = this;
+
+    vm.hasUser = function hasUser() {
+      return AccountModel.hasUser();
+    };
+  }
+
+  angular.module('safefamilies')
+    .controller('LandingController', ['AccountModel', LandingController]);
+
+})(window, window.angular);
+(function (window, angular, undefined) {
+
+  'use strict';
+
+  function navigationService() {
+    var navigationOpen = false;
+
+    this.closeNavigation = function closeNavigation() {
+      navigationOpen = false;
+    };
+
+    this.isNavigationOpen = function isNavigationOpen() {
+      return navigationOpen;
+    };
+
+    this.openNavigation = function openNavigation() {
+      navigationOpen = true;
+    };
+
+    this.toggleNavigation = function toggleNavigation() {
+      navigationOpen = !navigationOpen;
+    };
+  }
+
+  angular.module('safefamilies')
+    .service('navigationService', [navigationService]);
 
 })(window, window.angular);
 (function (window, angular, undefined) {
