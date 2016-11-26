@@ -1,0 +1,4 @@
+-r base.txt
+
+django-nose==1.4.4
+lettuce==0.2.23

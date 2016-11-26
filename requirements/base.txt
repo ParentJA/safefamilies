@@ -1,0 +1,8 @@
+Django==1.9.4
+django-grappelli==2.8.1
+django-localflavor==1.2
+djangorestframework==3.3.2
+Pillow==3.1.1
+PyYAML==3.11
+
+git+https://github.com/ParentJA/example-accounts-django.git#egg=example-accounts-django
