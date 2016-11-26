@@ -1,11 +1,13 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
-  function ProfileEditController($scope, $state, saveUserProfile, userProfile) {
-    $scope.errorByField = {};
-    $scope.form = "";
-    $scope.models = {
+  function ProfileEditController($state, saveUserProfile, userProfile) {
+    var vm = this;
+    
+    vm.errorByField = {};
+    vm.form = "";
+    vm.models = {
       first_name: userProfile.getFirstName(),
       last_name: userProfile.getLastName(),
       address_1: userProfile.getAddress1(),
@@ -16,22 +18,20 @@
       phone_number: userProfile.getPhoneNumber()
     };
 
-    $scope.hasErrors = function hasErrors() {
-      return !_.isEmpty($scope.errorByField);
+    vm.hasErrors = function hasErrors() {
+      return !_.isEmpty(vm.errorByField);
     };
 
-    $scope.onSubmit = function onSubmit() {
-      saveUserProfile($scope.models).then(function () {
-        $state.go("app.profile.detail");
+    vm.onSubmit = function onSubmit() {
+      saveUserProfile(vm.models).then(function () {
+        $state.go('app.profile.detail');
       }, function (response) {
-        $scope.errorByField = response;
+        vm.errorByField = response;
       });
     };
   }
 
-  angular.module("safefamilies")
-    .controller("ProfileEditController", [
-      "$scope", "$state", "saveUserProfile", "userProfile", ProfileEditController
-    ]);
+  angular.module('safefamilies')
+    .controller('ProfileEditController', ['$state', 'saveUserProfile', 'userProfile', ProfileEditController]);
 
 })(window, window.angular);

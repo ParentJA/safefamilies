@@ -3,37 +3,37 @@
     <div class="text-center">
       <p style="font-size: 12px; margin-bottom: 10px; color: gray;"><em>Click image to edit</em></p>
       <a href ui-sref="app.profile.edit">
-        <img class="img-circle center-block" ng-src="{{ models.photo }}" width="160">
+        <img class="img-circle center-block" ng-src="{{ vm.models.photo }}" width="160">
       </a>
       <div class="details-display">
-        <div ng-if="selectedDetail === 'name'">
+        <div ng-if="vm.selectedDetail === 'name'">
           <p>Hi, my name is</p>
-          <h4>{{ models.full_name }}</h4>
+          <h4>{{ vm.models.full_name }}</h4>
         </div>
-        <div ng-if="selectedDetail === 'email'">
+        <div ng-if="vm.selectedDetail === 'email'">
           <p>My email address is</p>
-          <h4>{{ models.email }}</h4>
+          <h4>{{ vm.models.email }}</h4>
         </div>
-        <div ng-if="selectedDetail === 'address'">
+        <div ng-if="vm.selectedDetail === 'address'">
           <p>My address is</p>
-          <h4>{{ models.full_address || 'N/A' }}</h4>
+          <h4>{{ vm.models.full_address || 'N/A' }}</h4>
         </div>
-        <div ng-if="selectedDetail === 'phone'">
+        <div ng-if="vm.selectedDetail === 'phone'">
           <p>My phone number is</p>
-          <h4>{{ models.phone_number || 'N/A' }}</h4>
+          <h4>{{ vm.models.phone_number || 'N/A' }}</h4>
         </div>
       </div>
       <ul class="details-list list-inline">
-        <li ng-mouseenter="setSelectedDetail('name')" ng-click="setSelectedDetail('name')">
+        <li ng-mouseenter="vm.setSelectedDetail('name')" ng-click="vm.setSelectedDetail('name')">
           <i class="fa fa-user"></i>
         </li>
-        <li ng-mouseenter="setSelectedDetail('email')" ng-click="setSelectedDetail('email')">
+        <li ng-mouseenter="vm.setSelectedDetail('email')" ng-click="vm.setSelectedDetail('email')">
           <i class="fa fa-envelope"></i>
         </li>
-        <li ng-mouseenter="setSelectedDetail('address')" ng-click="setSelectedDetail('address')">
+        <li ng-mouseenter="vm.setSelectedDetail('address')" ng-click="vm.setSelectedDetail('address')">
           <i class="fa fa-map-marker"></i>
         </li>
-        <li ng-mouseenter="setSelectedDetail('phone')" ng-click="setSelectedDetail('phone')">
+        <li ng-mouseenter="vm.setSelectedDetail('phone')" ng-click="vm.setSelectedDetail('phone')">
           <i class="fa fa-phone"></i>
         </li>
       </ul>

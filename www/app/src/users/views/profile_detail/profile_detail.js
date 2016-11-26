@@ -1,10 +1,12 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
-  function ProfileDetailController($scope, userProfile) {
-    $scope.selectedDetail = "name";
-    $scope.models = {
+  function ProfileDetailController(userProfile) {
+    var vm = this;
+    
+    vm.selectedDetail = 'name';
+    vm.models = {
       full_name: userProfile.getFullName(),
       photo: userProfile.getPhoto(),
       full_address: userProfile.getFullAddress(),
@@ -12,12 +14,12 @@
       email: userProfile.getEmail()
     };
 
-    $scope.setSelectedDetail = function setSelectedDetail(detail) {
-      $scope.selectedDetail = detail;
+    vm.setSelectedDetail = function setSelectedDetail(detail) {
+      vm.selectedDetail = detail;
     };
   }
 
-  angular.module("safefamilies")
-    .controller("ProfileDetailController", ["$scope", "userProfile", ProfileDetailController]);
+  angular.module('safefamilies')
+    .controller('ProfileDetailController', ['userProfile', ProfileDetailController]);
 
 })(window, window.angular);

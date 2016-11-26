@@ -1,28 +1,30 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
-  function LogInController($scope, $state, logInService) {
-    $scope.error = {};
-    $scope.form = "";
-    $scope.password = null;
-    $scope.username = null;
+  function LogInController($state, logInService) {
+    var vm = this;
+    
+    vm.error = {};
+    vm.form = "";
+    vm.password = null;
+    vm.username = null;
 
-    $scope.hasError = function hasError() {
-      return !_.isEmpty($scope.error);
+    vm.hasError = function hasError() {
+      return !_.isEmpty(vm.error);
     };
 
-    $scope.onSubmit = function onSubmit() {
-      logInService($scope.username, $scope.password).then(function () {
-        $state.go("app.dashboard");
+    vm.onSubmit = function onSubmit() {
+      logInService(vm.username, vm.password).then(function () {
+        $state.go('app.dashboard');
       }, function (response) {
-        $scope.error = response;
-        $scope.password = null;
+        vm.error = response;
+        vm.password = null;
       });
     };
   }
 
-  angular.module("safefamilies")
-    .controller("LogInController", ["$scope", "$state", "logInService", LogInController]);
+  angular.module('safefamilies')
+    .controller('LogInController', ['$state', 'logInService', LogInController]);
 
 })(window, window.angular);

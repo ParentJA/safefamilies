@@ -1,6 +1,6 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
   function recipientNeedService(Commitment, CommitmentStatus, RecipientNeed, RecipientNeedStatus) {
     var pendingNeeds = [];
@@ -10,7 +10,7 @@
     this.getPendingNeeds = function getPendingNeeds() {
       var needs = _.filter(RecipientNeed.getRecipientNeeds(), {status: RecipientNeedStatus.PENDING});
       var commitments = _.filter(Commitment.getCommitments(), {status: CommitmentStatus.ASSIGNED});
-      var commitmentsByNeed = _.keyBy(_.values(commitments), "recipient_need");
+      var commitmentsByNeed = _.keyBy(_.values(commitments), 'recipient_need');
 
       _.forEach(needs, function (need) {
         need.hasCommitment = _.has(commitmentsByNeed, need.id);
@@ -33,9 +33,9 @@
     };
   }
 
-  angular.module("safefamilies")
-    .service("recipientNeedService", [
-      "Commitment", "CommitmentStatus", "RecipientNeed", "RecipientNeedStatus", recipientNeedService
+  angular.module('safefamilies')
+    .service('recipientNeedService', [
+      'Commitment', 'CommitmentStatus', 'RecipientNeed', 'RecipientNeedStatus', recipientNeedService
     ]);
 
 })(window, window.angular);

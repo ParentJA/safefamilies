@@ -2,8 +2,8 @@
 
   'use strict';
 
-  function DashboardController($scope, $uibModal, CommitmentResource, CommitmentStatus, commitments,
-                               RecipientNeedResource, recipientNeedService, userProfile) {
+  function DashboardController($uibModal, CommitmentResource, CommitmentStatus, commitments, RecipientNeedResource,
+                               recipientNeedService, userProfile) {
     var vm = this;
 
     vm.models = {
@@ -129,7 +129,7 @@
 
   angular.module('safefamilies')
     .controller('DashboardController', [
-      '$scope', '$uibModal', 'CommitmentResource', 'CommitmentStatus', 'commitments', 'RecipientNeedResource',
+      '$uibModal', 'CommitmentResource', 'CommitmentStatus', 'commitments', 'RecipientNeedResource',
       'recipientNeedService', 'userProfile', DashboardController
     ]);
 

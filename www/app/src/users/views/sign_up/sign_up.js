@@ -1,35 +1,37 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
-  function SignUpController($scope, $state, signUpService) {
-    $scope.email = null;
-    $scope.error = {};
-    $scope.form = "";
-    $scope.password = null;
-    $scope.passwordAgain = null;
-    $scope.username = null;
+  function SignUpController($state, signUpService) {
+    var vm = this;
+    
+    vm.email = null;
+    vm.error = {};
+    vm.form = '';
+    vm.password = null;
+    vm.passwordAgain = null;
+    vm.username = null;
 
-    $scope.hasError = function hasError() {
-      return !_.isEmpty($scope.error);
+    vm.hasError = function hasError() {
+      return !_.isEmpty(vm.error);
     };
 
-    $scope.onSubmit = function onSubmit() {
-      signUpService($scope.username, $scope.email, $scope.password).then(function () {
-        $state.go("app.dashboard");
+    vm.onSubmit = function onSubmit() {
+      signUpService(vm.username, vm.email, vm.password).then(function () {
+        $state.go('app.dashboard');
       }, function (response) {
-        $scope.error = response;
-        $scope.password = null;
-        $scope.passwordAgain = null;
+        vm.error = response;
+        vm.password = null;
+        vm.passwordAgain = null;
       });
     };
 
-    $scope.passwordsMatch = function passwordsMatch() {
-      return (!_.isEmpty($scope.password) && $scope.password === $scope.passwordAgain);
+    vm.passwordsMatch = function passwordsMatch() {
+      return (!_.isEmpty(vm.password) && vm.password === vm.passwordAgain);
     };
   }
 
-  angular.module("safefamilies")
-    .controller("SignUpController", ["$scope", "$state", "signUpService", SignUpController]);
+  angular.module('safefamilies')
+    .controller('SignUpController', ['$state', 'signUpService', SignUpController]);
 
 })(window, window.angular);

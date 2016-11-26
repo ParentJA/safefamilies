@@ -6,7 +6,7 @@
     like you to connect parents, Host Homes, and Foster Families with the resources they need to successfully care for
     children.
   </p>-->
-  <a class="btn btn-primary" href ui-sref="log_in" ng-hide="hasUser()">Log in</a>
-  <a class="btn btn-primary" href ui-sref="sign_up" ng-hide="hasUser()">Sign up</a>
-  <a class="btn btn-primary" href ui-sref="app.dashboard" ng-show="hasUser()">Continue to dashboard</a>
+  <a class="btn btn-primary" href ui-sref="log_in" ng-hide="vm.hasUser()">Log in</a>
+  <a class="btn btn-primary" href ui-sref="sign_up" ng-hide="vm.hasUser()">Sign up</a>
+  <a class="btn btn-primary" href ui-sref="app.dashboard" ng-show="vm.hasUser()">Continue to dashboard</a>
 </div>

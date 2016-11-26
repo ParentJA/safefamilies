@@ -1,6 +1,6 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
   function RecipientNeed() {
     var needs = {};
@@ -40,27 +40,27 @@
 
     this.updateList = function updateList(data) {
       if (!_.isUndefined(data.need)) {
-        needs = _.merge(needs, _.keyBy(data.need, "id"));
+        needs = _.merge(needs, _.keyBy(data.need, 'id'));
       }
 
       if (!_.isUndefined(data.recipient)) {
-        recipients = _.merge(recipients, _.keyBy(data.recipient, "id"));
+        recipients = _.merge(recipients, _.keyBy(data.recipient, 'id'));
       }
 
       if (!_.isUndefined(data.recipient_need)) {
-        recipientNeeds = _.merge(recipientNeeds, _.keyBy(data.recipient_need, "id"));
+        recipientNeeds = _.merge(recipientNeeds, _.keyBy(data.recipient_need, 'id'));
       }
 
       build();
     };
   }
 
-  angular.module("safefamilies")
-    .constant("RecipientNeedStatus", {
-      PENDING: "PEN",
-      RECEIVED: "REC",
-      REQUESTED: "REQ"
+  angular.module('safefamilies')
+    .constant('RecipientNeedStatus', {
+      PENDING: 'PEN',
+      RECEIVED: 'REC',
+      REQUESTED: 'REQ'
     })
-    .service("RecipientNeed", [RecipientNeed]);
+    .service('RecipientNeed', [RecipientNeed]);
 
 })(window, window.angular);

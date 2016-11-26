@@ -5,18 +5,17 @@
         <h4 class="panel-title">Log in</h4>
       </div>
       <div class="panel-body">
-        <form name="form" novalidate ng-submit="onSubmit()">
-          <div class="alert alert-danger" ng-if="hasError()">{{ error.detail }}</div>
+        <form name="form" novalidate ng-submit="vm.onSubmit()">
+          <div class="alert alert-danger" ng-if="vm.hasError()">{{ vm.error.detail }}</div>
           <div class="form-group">
             <label for="username">Username:</label>
-            <input id="username" class="form-control" type="text" ng-model="username" required>
+            <input id="username" class="form-control" type="text" ng-model="vm.username" required>
           </div>
           <div class="form-group">
             <label for="password">Password:</label>
-            <input id="password" class="form-control" type="password" ng-model="password" required>
+            <input id="password" class="form-control" type="password" ng-model="vm.password" required>
           </div>
-          <button class="btn btn-primary btn-block" type="submit" ng-disabled="form.$invalid">Log in
-          </button>
+          <button class="btn btn-primary btn-block" type="submit" ng-disabled="vm.form.$invalid">Log in</button>
         </form>
       </div>
     </div>

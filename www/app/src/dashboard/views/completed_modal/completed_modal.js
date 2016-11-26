@@ -2,7 +2,7 @@
 
   'use strict';
 
-  function CompletedModalController($scope, $uibModalInstance, event, need) {
+  function CompletedModalController($uibModalInstance, event, need) {
     var vm = this;
 
     vm.ok = function ok() {
@@ -15,6 +15,6 @@
   }
 
   angular.module('safefamilies')
-    .controller('CompletedModalController', ['$scope', '$uibModalInstance', 'event', 'need', CompletedModalController]);
+    .controller('CompletedModalController', ['$uibModalInstance', 'event', 'need', CompletedModalController]);
 
 })(window, window.angular);

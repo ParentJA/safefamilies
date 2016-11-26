@@ -2,7 +2,7 @@
 
   'use strict';
 
-  function AssignNeedModalController($scope, $uibModalInstance, need, userService) {
+  function AssignNeedModalController($uibModalInstance, need, userService) {
     var vm = this;
 
     vm.need = need;
@@ -33,7 +33,6 @@
   }
 
   angular.module('safefamilies')
-    .controller('AssignNeedModalController', [
-      '$scope', '$uibModalInstance', 'need', 'userService', AssignNeedModalController]);
+    .controller('AssignNeedModalController', ['$uibModalInstance', 'need', 'userService', AssignNeedModalController]);
 
 })(window, window.angular);

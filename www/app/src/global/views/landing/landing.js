@@ -1,10 +1,16 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
-  function LandingController($scope) {}
+  function LandingController(AccountModel) {
+    var vm = this;
 
-  angular.module("safefamilies")
-    .controller("LandingController", ["$scope", LandingController]);
+    vm.hasUser = function hasUser() {
+      return AccountModel.hasUser();
+    };
+  }
+
+  angular.module('safefamilies')
+    .controller('LandingController', ['AccountModel', LandingController]);
 
 })(window, window.angular);

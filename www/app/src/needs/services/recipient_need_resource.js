@@ -1,16 +1,16 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
   function RecipientNeedResource($http, $q, BASE_URL, RecipientNeed) {
     this.list = function list() {
       var deferred = $q.defer();
 
-      $http.get(BASE_URL + "needs/recipient_need/").then(function (response) {
+      $http.get(BASE_URL + 'needs/recipient_need/').then(function (response) {
         RecipientNeed.updateList(response.data);
         deferred.resolve(RecipientNeed);
       }, function (response) {
-        console.error("Failed to load recipient needs.");
+        console.error('Failed to load recipient needs.');
         deferred.reject(response.data);
       });
 
@@ -20,11 +20,11 @@
     this.create = function create(data) {
       var deferred = $q.defer();
 
-      $http.post(BASE_URL + "needs/recipient_need/", data).then(function (response) {
+      $http.post(BASE_URL + 'needs/recipient_need/', data).then(function (response) {
         RecipientNeed.updateList(response.data);
         deferred.resolve(RecipientNeed);
       }, function (response) {
-        console.error("Failed to create recipient needs.");
+        console.error('Failed to create recipient needs.');
         deferred.reject(response.data);
       });
 
@@ -32,7 +32,7 @@
     };
   }
 
-  angular.module("safefamilies")
-    .service("RecipientNeedResource", ["$http", "$q", "BASE_URL", "RecipientNeed", RecipientNeedResource]);
+  angular.module('safefamilies')
+    .service('RecipientNeedResource', ['$http', '$q', 'BASE_URL', 'RecipientNeed', RecipientNeedResource]);
 
 })(window, window.angular);

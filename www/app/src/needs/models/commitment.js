@@ -1,6 +1,6 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
   function Commitment() {
     var commitments = {};
@@ -25,16 +25,16 @@
 
     this.updateList = function updateList(data) {
       if (!_.isUndefined(data.commitment)) {
-        commitments = _.merge(commitments, _.keyBy(data.commitment, "id"));
+        commitments = _.merge(commitments, _.keyBy(data.commitment, 'id'));
       }
     };
   }
 
-  angular.module("safefamilies")
-    .constant("CommitmentStatus", {
-      ASSIGNED: "A",
-      FINISHED: "F"
+  angular.module('safefamilies')
+    .constant('CommitmentStatus', {
+      ASSIGNED: 'A',
+      FINISHED: 'F'
     })
-    .service("Commitment", [Commitment]);
+    .service('Commitment', [Commitment]);
 
 })(window, window.angular);

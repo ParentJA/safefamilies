@@ -5,28 +5,28 @@
         <h4 class="panel-title">Sign up</h4>
       </div>
       <div class="panel-body">
-        <form name="form" novalidate ng-submit="onSubmit()">
+        <form name="form" novalidate ng-submit="vm.onSubmit()">
           <div class="form-group" ng-class="{
-            'has-error': error.username,
-            'has-feedback': error.username
+            'has-error': vm.error.username,
+            'has-feedback': vm.error.username
           }">
-            <label for="username" class="control-label">Username:</label>
-            <input id="username" class="form-control" type="text" ng-model="username" required>
-            <span class="help-block" ng-if="error.username">{{ error.username[0] }}</span>
+            <label class="control-label">Username:</label>
+            <input class="form-control" type="text" ng-model="vm.username" required>
+            <span class="help-block" ng-if="vm.error.username">{{ vm.error.username[0] }}</span>
           </div>
           <div class="form-group">
-            <label for="email">Email:</label>
-            <input id="email" class="form-control" type="text" ng-model="email" required>
+            <label>Email:</label>
+            <input class="form-control" type="text" ng-model="vm.email" required>
           </div>
           <div class="form-group">
-            <label for="password">Password:</label>
-            <input id="password" class="form-control" type="password" ng-model="password" required>
+            <label>Password:</label>
+            <input class="form-control" type="password" ng-model="vm.password" required>
           </div>
           <div class="form-group">
-            <label for="password-confirmation">Password (again):</label>
-            <input id="password-confirmation" class="form-control" type="password" ng-model="passwordAgain" required>
+            <label>Password (again):</label>
+            <input class="form-control" type="password" ng-model="vm.passwordAgain" required>
           </div>
-          <button class="btn btn-primary btn-block" type="submit" ng-disabled="form.$invalid || !passwordsMatch()">Sign up
+          <button class="btn btn-primary btn-block" type="submit" ng-disabled="vm.form.$invalid || !vm.passwordsMatch()">Sign up
           </button>
         </form>
       </div>

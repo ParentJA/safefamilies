@@ -1,6 +1,6 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
   function UserProfileModel() {
     var userProfile = {};
@@ -14,7 +14,7 @@
     };
 
     this.getFullName = function getFullName() {
-      return userProfile.first_name + " " + userProfile.last_name;
+      return userProfile.first_name + ' ' + userProfile.last_name;
     };
 
     this.getEmail = function getEmail() {
@@ -53,10 +53,10 @@
       var address = userProfile.address_1;
 
       if (userProfile.address_2) {
-        address = address + ", " + userProfile.address_2;
+        address = address + ', ' + userProfile.address_2;
       }
 
-      return address + ", " + userProfile.city + ", " + userProfile.state + " " + userProfile.zip_code;
+      return address + ', ' + userProfile.city + ', ' + userProfile.state + ' ' + userProfile.zip_code;
     };
 
     this.getPhoneNumber = function getPhoneNumber() {
@@ -72,7 +72,7 @@
     };
   }
 
-  angular.module("safefamilies")
-    .service("UserProfileModel", [UserProfileModel]);
+  angular.module('safefamilies')
+    .service('UserProfileModel', [UserProfileModel]);
 
 })(window, window.angular);

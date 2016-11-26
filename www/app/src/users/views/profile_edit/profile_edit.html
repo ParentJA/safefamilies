@@ -5,44 +5,50 @@
         <h4 class="panel-title">Profile</h4>
       </div>
       <div class="panel-body">
-        <form name="form" novalidate ng-submit="onSubmit()">
-          <div class="alert alert-danger" ng-if="hasErrors()">Please correct the errors below.</div>
+        <form name="form" novalidate ng-submit="vm.onSubmit()">
+          <div class="alert alert-danger" ng-if="vm.hasErrors()">Please correct the errors below.</div>
           <div class="form-group">
-            <label for="first-name">First name:</label>
-            <input id="first-name" class="form-control" type="text" ng-value="models.first_name" ng-model="models.first_name" required>
-          </div>
-          <div class="form-group">
-            <label for="last-name">Last name:</label>
-            <input id="last-name" class="form-control" type="text" ng-value="models.last_name" ng-model="models.last_name" required>
+            <label>First name:</label>
+            <input class="form-control" type="text" ng-value="vm.models.first_name" ng-model="vm.models.first_name"
+                   required>
           </div>
           <div class="form-group">
-            <label for="address">Address:</label>
-            <input id="address" class="form-control" type="text" ng-value="models.address_1" ng-model="models.address_1" required>
+            <label>Last name:</label>
+            <input class="form-control" type="text" ng-value="vm.models.last_name" ng-model="vm.models.last_name"
+                   required>
           </div>
           <div class="form-group">
-            <label for="address-2">Address (line 2):</label>
-            <input id="address-2" class="form-control" type="text" ng-value="models.address_2" ng-model="models.address_2">
+            <label>Address:</label>
+            <input class="form-control" type="text" ng-value="vm.models.address_1" ng-model="vm.models.address_1"
+                   required>
           </div>
           <div class="form-group">
-            <label for="city">City:</label>
-            <input id="city" class="form-control" type="text" ng-value="models.city" ng-model="models.city" required>
+            <label>Address (line 2):</label>
+            <input class="form-control" type="text" ng-value="vm.models.address_2" ng-model="vm.models.address_2">
           </div>
-          <div class="form-group" ng-class="{'has-error': errorByField.state}">
-            <label for="state">State:</label>
-            <input id="state" class="form-control" type="text" maxlength="2" ng-value="models.state" ng-model="models.state" required>
-            <span class="help-block" ng-repeat="error in errorByField.state">{{ error }}</span>
+          <div class="form-group">
+            <label>City:</label>
+            <input class="form-control" type="text" ng-value="vm.models.city" ng-model="vm.models.city" required>
           </div>
-          <div class="form-group" ng-class="{'has-error': errorByField.zip_code}">
-            <label for="zip-code">Zip code:</label>
-            <input id="zip-code" class="form-control" type="text" ng-value="models.zip_code" ng-model="models.zip_code" required>
-            <span class="help-block" ng-repeat="error in errorByField.zip_code">{{ error }}</span>
+          <div class="form-group" ng-class="{'has-error': vm.errorByField.state}">
+            <label>State:</label>
+            <input class="form-control" type="text" maxlength="2" ng-value="vm.models.state" ng-model="vm.models.state"
+                   required>
+            <span class="help-block" ng-repeat="error in vm.errorByField.state">{{ error }}</span>
           </div>
-          <div class="form-group" ng-class="{'has-error': errorByField.phone_number}">
-            <label for="phone-number">Phone number:</label>
-            <input id="phone-number" class="form-control" type="text" ng-value="models.phone_number" ng-model="models.phone_number" required>
-            <span class="help-block" ng-repeat="error in errorByField.phone_number">{{ error }}</span>
+          <div class="form-group" ng-class="{'has-error': vm.errorByField.zip_code}">
+            <label>Zip code:</label>
+            <input class="form-control" type="text" ng-value="vm.models.zip_code" ng-model="vm.models.zip_code"
+                   required>
+            <span class="help-block" ng-repeat="error in vm.errorByField.zip_code">{{ error }}</span>
           </div>
-          <button class="btn btn-primary btn-block" type="submit" ng-disabled="form.$invalid">Update</button>
+          <div class="form-group" ng-class="{'has-error': vm.errorByField.phone_number}">
+            <label>Phone number:</label>
+            <input class="form-control" type="text" ng-value="vm.models.phone_number" ng-model="vm.models.phone_number"
+                   required>
+            <span class="help-block" ng-repeat="error in vm.errorByField.phone_number">{{ error }}</span>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit" ng-disabled="vm.form.$invalid">Update</button>
         </form>
       </div>
     </div>

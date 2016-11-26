@@ -2,7 +2,7 @@
 
   'use strict';
 
-  function AddNeedModalController($scope, $uibModalInstance) {
+  function AddNeedModalController($uibModalInstance) {
     var vm = this;
 
     vm.models = {
@@ -52,6 +52,6 @@
   }
 
   angular.module('safefamilies')
-    .controller('AddNeedModalController', ['$scope', '$uibModalInstance', AddNeedModalController]);
+    .controller('AddNeedModalController', ['$uibModalInstance', AddNeedModalController]);
 
 })(window, window.angular);
