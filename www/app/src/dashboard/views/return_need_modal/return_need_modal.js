@@ -1,20 +1,22 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
   function ReturnNeedModalController($scope, $uibModalInstance, need) {
-    $scope.need = need;
+    var vm = this;
 
-    $scope.ok = function ok() {
+    vm.need = need;
+
+    vm.ok = function ok() {
       $uibModalInstance.close(need);
     };
 
-    $scope.cancel = function cancel() {
-      $uibModalInstance.dismiss("cancel");
+    vm.cancel = function cancel() {
+      $uibModalInstance.dismiss('cancel');
     };
   }
 
-  angular.module("safefamilies")
-    .controller("ReturnNeedModalController", ["$scope", "$uibModalInstance", "need", ReturnNeedModalController]);
+  angular.module('safefamilies')
+    .controller('ReturnNeedModalController', ['$scope', '$uibModalInstance', 'need', ReturnNeedModalController]);
 
 })(window, window.angular);

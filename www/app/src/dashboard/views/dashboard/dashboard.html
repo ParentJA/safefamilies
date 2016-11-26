@@ -3,13 +3,13 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          Requested Needs <span class="badge pull-right">{{ models.requestedNeeds.length }}</span>
+          Requested Needs <span class="badge pull-right">{{ vm.models.requestedNeeds.length }}</span>
         </h4>
       </div>
-      <div class="panel-body text-center" ng-if="models.requestedNeeds.length === 0">
+      <div class="panel-body text-center" ng-if="vm.models.requestedNeeds.length === 0">
         No one has requested anything...
       </div>
-      <table class="table table-responsive" ng-if="models.requestedNeeds.length > 0">
+      <table class="table table-responsive" ng-if="vm.models.requestedNeeds.length > 0">
         <thead>
         <tr>
           <th>Quantity</th>
@@ -20,30 +20,30 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="need in models.requestedNeeds">
+        <tr ng-repeat="need in vm.models.requestedNeeds">
           <td>{{ need.quantity }}</td>
           <td>{{ need._need.name }}</td>
           <td>{{ (need.due_date | date: 'shortDate') || 'N/A' }}</td>
           <td>{{ need._recipient.address_1 || 'N/A' }}</td>
-          <td class="text-right"><a href ng-click="openAssignNeed(need)">Accept</a></td>
+          <td class="text-right"><a href ng-click="vm.openAssignNeed(need)">Accept</a></td>
         </tr>
         </tbody>
       </table>
       <div class="panel-footer">
-        <button class="btn btn-primary" ng-click="openAddNeed()"><i class="fa fa-plus"></i> Post a need</button>
+        <button class="btn btn-primary" ng-click="vm.openAddNeed()"><i class="fa fa-plus"></i> Post a need</button>
       </div>
     </div>
 
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          Your Pending Needs <span class="badge pull-right">{{ models.pendingNeeds.length }}</span>
+          Your Pending Needs <span class="badge pull-right">{{ vm.models.pendingNeeds.length }}</span>
         </h4>
       </div>
-      <div class="panel-body text-center" ng-if="models.pendingNeeds.length === 0">
+      <div class="panel-body text-center" ng-if="vm.models.pendingNeeds.length === 0">
         You haven't committed to any requests...
       </div>
-      <table class="table table-responsive" ng-if="models.pendingNeeds.length > 0">
+      <table class="table table-responsive" ng-if="vm.models.pendingNeeds.length > 0">
         <thead>
         <tr>
           <th>Quantity</th>
@@ -53,16 +53,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="need in models.pendingNeeds">
+        <tr ng-repeat="need in vm.models.pendingNeeds">
           <td>{{ need.quantity }}</td>
           <td>
-            <a href ng-click="openRecipient(need)">{{ need._need.name }}</a>
+            <a href ng-click="vm.openRecipient(need)">{{ need._need.name }}</a>
           </td>
           <td>
-            <a href ng-click="openReturnNeed(need)" ng-if="need.hasCommitment">Return</a>
+            <a href ng-click="vm.openReturnNeed(need)" ng-if="need.hasCommitment">Return</a>
           </td>
           <td>
-            <input type="checkbox" ng-click="openCompleted($event, need)">
+            <input type="checkbox" ng-click="vm.openCompleted($event, need)">
           </td>
         </tr>
         </tbody>

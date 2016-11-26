@@ -1,11 +1,11 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
   function DashboardRouterConfig($stateProvider) {
-    $stateProvider.state("app.dashboard", {
-      url: "/dashboard",
-      templateUrl: "dashboard/views/dashboard/dashboard.html",
+    $stateProvider.state('app.dashboard', {
+      url: '/dashboard',
+      templateUrl: 'dashboard/views/dashboard/dashboard.html',
       data: {
         loginRequired: true
       },
@@ -24,11 +24,12 @@
           return CommitmentResource.list();
         }
       },
-      controller: "DashboardController"
+      controller: 'DashboardController',
+      controllerAs: 'vm'
     });
   }
 
-  angular.module("safefamilies")
-    .config(["$stateProvider", DashboardRouterConfig]);
+  angular.module('safefamilies')
+    .config(['$stateProvider', DashboardRouterConfig]);
 
 })(window, window.angular);

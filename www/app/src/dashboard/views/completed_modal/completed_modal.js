@@ -1,21 +1,20 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
   function CompletedModalController($scope, $uibModalInstance, event, need) {
-    $scope.event = event;
-    $scope.need = need;
+    var vm = this;
 
-    $scope.ok = function ok() {
-      $uibModalInstance.close({event: $scope.event, need: $scope.need});
+    vm.ok = function ok() {
+      $uibModalInstance.close({event: event, need: need});
     };
 
-    $scope.cancel = function cancel() {
+    vm.cancel = function cancel() {
       $uibModalInstance.dismiss(event);
     };
   }
 
-  angular.module("safefamilies")
-    .controller("CompletedModalController", ["$scope", "$uibModalInstance", "event", "need", CompletedModalController]);
+  angular.module('safefamilies')
+    .controller('CompletedModalController', ['$scope', '$uibModalInstance', 'event', 'need', CompletedModalController]);
 
 })(window, window.angular);

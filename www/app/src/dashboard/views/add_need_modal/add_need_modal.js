@@ -1,9 +1,11 @@
 (function (window, angular, undefined) {
 
-  "use strict";
+  'use strict';
 
   function AddNeedModalController($scope, $uibModalInstance) {
-    $scope.models = {
+    var vm = this;
+
+    vm.models = {
       // Recipient.
       part1: {
         first_name: null,
@@ -30,26 +32,26 @@
       }
     };
 
-    $scope.part1 = null;
-    $scope.part2 = null;
-    $scope.part3 = null;
+    vm.part1 = null;
+    vm.part2 = null;
+    vm.part3 = null;
 
-    $scope.currentPart = 1;
+    vm.currentPart = 1;
 
-    $scope.goToPart = function goToPart(part) {
-      $scope.currentPart = part;
+    vm.goToPart = function goToPart(part) {
+      vm.currentPart = part;
     };
 
-    $scope.ok = function ok() {
-      $uibModalInstance.close($scope.models);
+    vm.ok = function ok() {
+      $uibModalInstance.close(vm.models);
     };
 
-    $scope.cancel = function cancel() {
-      $uibModalInstance.dismiss("cancel");
+    vm.cancel = function cancel() {
+      $uibModalInstance.dismiss('cancel');
     };
   }
 
-  angular.module("safefamilies")
-    .controller("AddNeedModalController", ["$scope", "$uibModalInstance", AddNeedModalController]);
+  angular.module('safefamilies')
+    .controller('AddNeedModalController', ['$scope', '$uibModalInstance', AddNeedModalController]);
 
 })(window, window.angular);

@@ -45,13 +45,15 @@
   }
 
   function MainController($scope, $state, AccountModel, logOutService, navigationService) {
-    $scope.navigationService = navigationService;
+    var vm = this;
 
-    $scope.hasUser = function hasUser() {
+    vm.navigationService = navigationService;
+
+    vm.hasUser = function hasUser() {
       return AccountModel.hasUser();
     };
 
-    $scope.logOut = function logOut() {
+    vm.logOut = function logOut() {
       logOutService().finally(function () {
         $state.go("log_in");
       });

@@ -2,11 +2,11 @@
   <h4 class="modal-title">Return Need</h4>
 </div>
 <div class="modal-body">
-  <p class="lead">Do you want us to assign {{ need.quantity }} {{ need._need.name }} to someone else?</p>
+  <p class="lead">Do you want us to assign {{ vm.need.quantity }} {{ vm.need._need.name }} to someone else?</p>
   <p><strong>Description</strong></p>
-  <p>{{ need._need.description }}</p>
+  <p>{{ vm.need._need.description }}</p>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-default" type="button" ng-click="cancel()">No</button>
-  <button class="btn btn-primary" type="submit" ng-click="ok()">Yes</button>
+  <button class="btn btn-default" type="button" ng-click="vm.cancel()">No</button>
+  <button class="btn btn-primary" type="submit" ng-click="vm.ok()">Yes</button>
 </div>
